@@ -1,106 +1,200 @@
-<div class="container">
+<div class="container mt-5">
   <h2>Register</h2>
-  <form (ngSubmit)="register()">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
       <input
         type="text"
         id="firstName"
         [(ngModel)]="user.firstName"
         name="firstName"
+        class="form-control"
         required
+        #firstName="ngModel"
       />
+      <div
+        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+        class="text-danger"
+      >
+        First name is required.
+      </div>
     </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
       <input
         type="text"
         id="lastName"
         [(ngModel)]="user.lastName"
         name="lastName"
+        class="form-control"
         required
+        #lastName="ngModel"
       />
+      <div
+        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+        class="text-danger"
+      >
+        Last name is required.
+      </div>
     </div>
-    <div class="form-group">
-      <label for="email">Email</label>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
       <input
         type="email"
         id="email"
         [(ngModel)]="user.email"
         name="email"
+        class="form-control"
         required
+        #email="ngModel"
       />
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="text-danger"
+      >
+        Valid email is required.
+      </div>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
       <input
         type="password"
         id="password"
         [(ngModel)]="user.password"
         name="password"
+        class="form-control"
         required
+        #password="ngModel"
       />
+      <div
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="text-danger"
+      >
+        Password is required.
+      </div>
     </div>
     <div *ngIf="user.role === 'lawyer'">
-      <div class="form-group">
-        <label for="specialization">Specialization</label>
+      <div class="mb-3">
+        <label for="specialization" class="form-label">Specialization</label>
         <input
           type="text"
           id="specialization"
           [(ngModel)]="user.specialization"
           name="specialization"
+          class="form-control"
           required
+          #specialization="ngModel"
         />
+        <div
+          *ngIf="
+            specialization.invalid &&
+            (specialization.dirty || specialization.touched)
+          "
+          class="text-danger"
+        >
+          Specialization is required.
+        </div>
       </div>
-      <div class="form-group">
-        <label for="description">Description</label>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
         <textarea
           id="description"
           [(ngModel)]="user.description"
           name="description"
+          class="form-control"
           required
+          #description="ngModel"
         ></textarea>
+        <div
+          *ngIf="
+            description.invalid && (description.dirty || description.touched)
+          "
+          class="text-danger"
+        >
+          Description is required.
+        </div>
       </div>
-      <div class="form-group">
-        <label for="address">Address</label>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
         <input
           type="text"
           id="address"
           [(ngModel)]="user.address"
           name="address"
+          class="form-control"
           required
+          #address="ngModel"
         />
+        <div
+          *ngIf="address.invalid && (address.dirty || address.touched)"
+          class="text-danger"
+        >
+          Address is required.
+        </div>
       </div>
-      <div class="form-group">
-        <label for="phone">Phone</label>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
         <input
           type="text"
           id="phone"
           [(ngModel)]="user.phone"
           name="phone"
+          class="form-control"
           required
+          #phone="ngModel"
         />
+        <div
+          *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+          class="text-danger"
+        >
+          Phone number is required.
+        </div>
       </div>
-      <div class="form-group">
-        <label for="profilePicture">Profile Picture URL</label>
+      <div class="mb-3">
+        <label for="profilePicture" class="form-label"
+          >Profile Picture URL</label
+        >
         <input
           type="text"
           id="profilePicture"
           [(ngModel)]="user.profilePicture"
           name="profilePicture"
+          class="form-control"
           required
+          #profilePicture="ngModel"
         />
+        <div
+          *ngIf="
+            profilePicture.invalid &&
+            (profilePicture.dirty || profilePicture.touched)
+          "
+          class="text-danger"
+        >
+          Profile picture URL is required.
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="role">Role</label>
-      <select id="role" [(ngModel)]="user.role" name="role" required>
+    <div class="mb-3">
+      <label for="role" class="form-label">Role</label>
+      <select
+        id="role"
+        [(ngModel)]="user.role"
+        name="role"
+        class="form-select"
+        required
+      >
         <option value="user">User</option>
         <option value="lawyer">Lawyer</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-    <div *ngIf="errorMessage" class="alert alert-danger">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="registerForm.invalid"
+    >
+      Register
+    </button>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
       {{ errorMessage }}
     </div>
   </form>
