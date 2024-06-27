@@ -1,0 +1,107 @@
+<div class="container">
+  <h2>Register</h2>
+  <form (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        id="firstName"
+        [(ngModel)]="user.firstName"
+        name="firstName"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        [(ngModel)]="user.lastName"
+        name="lastName"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="user.email"
+        name="email"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="user.password"
+        name="password"
+        required
+      />
+    </div>
+    <div *ngIf="user.role === 'lawyer'">
+      <div class="form-group">
+        <label for="specialization">Specialization</label>
+        <input
+          type="text"
+          id="specialization"
+          [(ngModel)]="user.specialization"
+          name="specialization"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          [(ngModel)]="user.description"
+          name="description"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input
+          type="text"
+          id="address"
+          [(ngModel)]="user.address"
+          name="address"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          id="phone"
+          [(ngModel)]="user.phone"
+          name="phone"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="profilePicture">Profile Picture URL</label>
+        <input
+          type="text"
+          id="profilePicture"
+          [(ngModel)]="user.profilePicture"
+          name="profilePicture"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select id="role" [(ngModel)]="user.role" name="role" required>
+        <option value="user">User</option>
+        <option value="lawyer">Lawyer</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>
