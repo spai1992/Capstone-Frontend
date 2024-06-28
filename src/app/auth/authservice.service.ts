@@ -2,29 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { User } from '../models/user';
+import { LoginData } from '../models/login-data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}`;
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
-  registerUser(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup/user`, user);
+  registerUser(user: User): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/register`, user);
   }
 
-  registerLawyer(lawyer: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup/lawyer`, lawyer);
+  registerLawyer(user: User): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/register-lawyer`, user);
   }
 
-  login(credentials: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signin`, credentials);
-  }
-
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token'); // Verifica se il token è presente
+  login(loginData: LoginData): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/login`, loginData);
   }
 
   setToken(token: string): void {
@@ -35,7 +33,7 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  logout(): void {
-    localStorage.removeItem('token');
+  isLoggedIn(): boolean {
+    return !!this.getToken();
   }
 }

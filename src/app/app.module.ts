@@ -1,26 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AuthModule } from './auth/auth.module';
-import { DashboardComponent } from './dashboard/dashboard.component'; // Importa DashboardComponent
+import { RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LandingPageComponent } from './landing-page/landing-page.component'; // Assicurati di importare questo componente
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent, // Dichiara DashboardComponent
+    UserDashboardComponent,
+    RegisterComponent,
+    LoginComponent,
+    LandingPageComponent, // Dichiarazione del componente LandingPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    NgbModule,
-    AuthModule,
+    AppRoutingModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

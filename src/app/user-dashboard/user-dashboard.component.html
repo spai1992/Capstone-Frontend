@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h2>Lawyers</h2>
+  <form (ngSubmit)="searchLawyers()" #searchForm="ngForm" class="mb-3">
+    <div class="mb-3">
+      <label for="searchKeyword" class="form-label">Keyword</label>
+      <input
+        type="text"
+        id="searchKeyword"
+        [(ngModel)]="searchKeyword"
+        name="searchKeyword"
+        class="form-control"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="searchCity" class="form-label">City</label>
+      <input
+        type="text"
+        id="searchCity"
+        [(ngModel)]="searchCity"
+        name="searchCity"
+        class="form-control"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <div *ngIf="lawyers.length === 0" class="alert alert-info">
+    No lawyers found.
+  </div>
+  <div *ngIf="lawyers.length > 0">
+    <div class="card mb-3" *ngFor="let lawyer of lawyers">
+      <div class="card-body">
+        <h5 class="card-title">{{ lawyer.firstName }} {{ lawyer.lastName }}</h5>
+        <p class="card-text">{{ lawyer.specialization }}</p>
+        <p class="card-text">{{ lawyer.description }}</p>
+        <a [routerLink]="['/lawyer-profile', lawyer.id]" class="btn btn-primary"
+          >View Profile</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
