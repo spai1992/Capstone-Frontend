@@ -6,6 +6,7 @@ export interface User {
   role: string;
   specialization?: string;
   description?: string;
+  city?: string; // Aggiungi questa linea se la città è necessaria per l'utente
   address?: string;
   phone?: string;
   profilePicture?: string;

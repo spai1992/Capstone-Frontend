@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../authservice.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { LawyerRequest } from '../../models/lawyer-request';
 
 @Component({
   selector: 'app-register',
@@ -15,13 +16,24 @@ export class RegisterComponent {
     email: '',
     password: '',
     role: 'user',
+    roles: [],
+  };
+
+  lawyer: LawyerRequest = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
     specialization: '',
     description: '',
+    city: '',
     address: '',
     phone: '',
     profilePicture: '',
     roles: [],
+    role: 'lawyer', // Imposta il ruolo dell'avvocato
   };
+
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -31,6 +43,7 @@ export class RegisterComponent {
       this.user.roles = ['ROLE_USER'];
       this.authService.registerUser(this.user).subscribe(
         (response) => {
+          this.authService.setToken(response.token);
           this.router.navigate(['/login']);
         },
         (error) => {
@@ -38,9 +51,10 @@ export class RegisterComponent {
         }
       );
     } else if (this.user.role === 'lawyer') {
-      this.user.roles = ['ROLE_LAWYER'];
-      this.authService.registerLawyer(this.user).subscribe(
+      this.lawyer.roles = ['ROLE_LAWYER'];
+      this.authService.registerLawyer(this.lawyer).subscribe(
         (response) => {
+          this.authService.setToken(response.token);
           this.router.navigate(['/login']);
         },
         (error) => {

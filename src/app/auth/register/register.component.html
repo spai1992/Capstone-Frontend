@@ -79,7 +79,7 @@
         <input
           type="text"
           id="specialization"
-          [(ngModel)]="user.specialization"
+          [(ngModel)]="lawyer.specialization"
           name="specialization"
           class="form-control"
           required
@@ -99,7 +99,7 @@
         <label for="description" class="form-label">Description</label>
         <textarea
           id="description"
-          [(ngModel)]="user.description"
+          [(ngModel)]="lawyer.description"
           name="description"
           class="form-control"
           required
@@ -115,11 +115,29 @@
         </div>
       </div>
       <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input
+          type="text"
+          id="city"
+          [(ngModel)]="lawyer.city"
+          name="city"
+          class="form-control"
+          required
+          #city="ngModel"
+        />
+        <div
+          *ngIf="city.invalid && (city.dirty || city.touched)"
+          class="text-danger"
+        >
+          City is required.
+        </div>
+      </div>
+      <div class="mb-3">
         <label for="address" class="form-label">Address</label>
         <input
           type="text"
           id="address"
-          [(ngModel)]="user.address"
+          [(ngModel)]="lawyer.address"
           name="address"
           class="form-control"
           required
@@ -137,7 +155,7 @@
         <input
           type="text"
           id="phone"
-          [(ngModel)]="user.phone"
+          [(ngModel)]="lawyer.phone"
           name="phone"
           class="form-control"
           required
@@ -157,7 +175,7 @@
         <input
           type="text"
           id="profilePicture"
-          [(ngModel)]="user.profilePicture"
+          [(ngModel)]="lawyer.profilePicture"
           name="profilePicture"
           class="form-control"
           required

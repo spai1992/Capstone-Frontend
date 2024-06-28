@@ -26,7 +26,11 @@ export class UserDashboardComponent implements OnInit {
           this.lawyers = lawyers;
         },
         error: (err) => {
-          console.error('Failed to load lawyers', err);
+          if (err.status === 403) {
+            console.error('Accesso negato. Assicurati di essere autenticato.');
+          } else {
+            console.error('Failed to load lawyers', err);
+          }
         },
       });
   }
