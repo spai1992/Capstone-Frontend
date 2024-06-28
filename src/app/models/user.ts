@@ -9,5 +9,5 @@ export interface User {
   address?: string;
   phone?: string;
   profilePicture?: string;
-  roles: Set<string>;
+  roles: string[]; // Cambia da Set<string> a string[]
 }

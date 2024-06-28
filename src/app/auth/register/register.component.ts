@@ -20,7 +20,7 @@ export class RegisterComponent {
     address: '',
     phone: '',
     profilePicture: '',
-    roles: new Set<string>(),
+    roles: [],
   };
   errorMessage: string = '';
 
@@ -28,10 +28,9 @@ export class RegisterComponent {
 
   register() {
     if (this.user.role === 'user') {
-      this.user.roles = new Set<string>(['ROLE_USER']);
+      this.user.roles = ['ROLE_USER'];
       this.authService.registerUser(this.user).subscribe(
         (response) => {
-          this.authService.setToken(response.token);
           this.router.navigate(['/login']);
         },
         (error) => {
@@ -39,10 +38,9 @@ export class RegisterComponent {
         }
       );
     } else if (this.user.role === 'lawyer') {
-      this.user.roles = new Set<string>(['ROLE_LAWYER']);
+      this.user.roles = ['ROLE_LAWYER'];
       this.authService.registerLawyer(this.user).subscribe(
         (response) => {
-          this.authService.setToken(response.token);
           this.router.navigate(['/login']);
         },
         (error) => {

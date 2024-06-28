@@ -6,18 +6,19 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { LoginComponent } from './auth/login/login.component';
+
 import { AppRoutingModule } from './app-routing.module';
-import { LandingPageComponent } from './landing-page/landing-page.component'; // Assicurati di importare questo componente
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component'; // Importa il componente Navbar
+import { AuthModule } from './auth/auth.module'; // Importa AuthModule
 
 @NgModule({
   declarations: [
     AppComponent,
     UserDashboardComponent,
-    RegisterComponent,
-    LoginComponent,
-    LandingPageComponent, // Dichiarazione del componente LandingPageComponent
+
+    LandingPageComponent,
+    NavbarComponent, // Dichiarazione del componente Navbar
   ],
   imports: [
     BrowserModule,
@@ -25,6 +26,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component'; //
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
+    AuthModule, // Aggiungi AuthModule qui
   ],
   providers: [],
   bootstrap: [AppComponent],

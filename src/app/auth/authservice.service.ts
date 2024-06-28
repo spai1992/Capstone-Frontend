@@ -14,15 +14,15 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   registerUser(user: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/auth/register`, user);
+    return this.http.post<any>(`${this.apiUrl}/auth/signup/user`, user);
   }
 
   registerLawyer(user: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/auth/register-lawyer`, user);
+    return this.http.post<any>(`${this.apiUrl}/auth/signup/lawyer`, user);
   }
 
   login(loginData: LoginData): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/auth/login`, loginData);
+    return this.http.post<any>(`${this.apiUrl}/auth/signin`, loginData);
   }
 
   setToken(token: string): void {
@@ -35,5 +35,9 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  isAuthenticated(): boolean {
+    return this.isLoggedIn();
   }
 }
