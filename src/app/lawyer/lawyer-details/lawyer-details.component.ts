@@ -103,7 +103,7 @@ export class LawyerDetailsComponent implements OnInit {
         error: (err) => {
           console.error('Failed to book appointment', err);
           this.errorMessage = err.error
-            ? err.error.message
+            ? err.error
             : 'An error occurred while booking the appointment.';
         },
       });
