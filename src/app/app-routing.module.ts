@@ -4,20 +4,34 @@ import { AuthGuard } from './auth/auth.guard';
 import { GuestGuard } from './auth/guest.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { LawyerDetailsComponent } from './lawyer/lawyer-details/lawyer-details.component';
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./landing-page/landing-page.module').then(
+        (m) => m.LandingPageModule
+      ),
+  },
   { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] },
   {
     path: 'dashboard',
-    component: UserDashboardComponent,
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     canActivate: [AuthGuard],
   },
-  { path: 'lawyer-profile/:id', component: LawyerDetailsComponent },
+  {
+    path: 'lawyer',
+    loadChildren: () =>
+      import('./lawyer/lawyer.module').then((m) => m.LawyerModule),
+  },
+  {
+    path: 'appointments',
+    loadChildren: () =>
+      import('./appointment/appointment.module').then(
+        (m) => m.AppointmentModule
+      ),
+  },
   { path: '**', redirectTo: '' },
 ];
 

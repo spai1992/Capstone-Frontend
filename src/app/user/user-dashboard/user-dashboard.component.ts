@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LawyerService } from '../lawyer/lawyer.service';
-import { LawyerResponse } from '../models/lawyer-response';
+import { LawyerService } from '../../lawyer/lawyer.service';
+import { LawyerResponse } from '../../models/lawyer-response';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -33,6 +33,6 @@ export class UserDashboardComponent implements OnInit {
   }
 
   viewProfile(lawyerId: number): void {
-    this.router.navigate(['/lawyer-profile', lawyerId]);
+    this.router.navigate(['/lawyer/profile', lawyerId]);
   }
 }

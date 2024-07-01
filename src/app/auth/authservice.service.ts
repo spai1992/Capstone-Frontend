@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { LoginData } from '../models/login-data';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { LoginData } from '../models/login-data';
 export class AuthService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   registerUser(user: User): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/auth/signup/user`, user);
@@ -51,5 +52,11 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return this.isLoggedIn();
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
   }
 }

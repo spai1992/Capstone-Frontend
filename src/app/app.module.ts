@@ -1,36 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-
-import { AppComponent } from './app.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { AuthModule } from './auth/auth.module';
-
 import { AppRoutingModule } from './app-routing.module';
-import { LawyerDetailsComponent } from './lawyer/lawyer-details/lawyer-details.component';
-import { AppointmentService } from './appointment/appointment.service';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './shared/shared.module'; // Percorso corretto per il modulo condiviso
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserDashboardComponent,
-    LandingPageComponent,
-    NavbarComponent,
-    LawyerDetailsComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
     AppRoutingModule,
-    RouterModule,
+    HttpClientModule,
+    FormsModule,
     AuthModule,
+    SharedModule, // Aggiungi il modulo condiviso qui
   ],
-  providers: [AppointmentService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
