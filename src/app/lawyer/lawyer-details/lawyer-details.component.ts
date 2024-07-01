@@ -28,8 +28,8 @@ export class LawyerDetailsComponent implements OnInit {
     '15:00',
     '16:00',
     '17:00',
-    '18:00',
   ];
+  errorMessage: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -84,6 +84,7 @@ export class LawyerDetailsComponent implements OnInit {
   }
 
   bookAppointment(modal: any): void {
+    this.errorMessage = ''; // Clear previous error messages
     const currentUser = this.authService.getUser();
     if (this.lawyer && currentUser && currentUser.id) {
       const appointmentRequest = {
@@ -99,7 +100,12 @@ export class LawyerDetailsComponent implements OnInit {
           modal.close();
           this.closeModal();
         },
-        error: (err) => console.error('Failed to book appointment', err),
+        error: (err) => {
+          console.error('Failed to book appointment', err);
+          this.errorMessage = err.error
+            ? err.error.message
+            : 'An error occurred while booking the appointment.';
+        },
       });
     }
   }
