@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthModule } from './auth/auth.module';
 
 import { AppRoutingModule } from './app-routing.module';
+import { LawyerDetailsComponent } from './lawyer/lawyer-details/lawyer-details.component';
+import { AppointmentService } from './appointment/appointment.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
     UserDashboardComponent,
     LandingPageComponent,
     NavbarComponent,
+    LawyerDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { AppRoutingModule } from './app-routing.module';
     RouterModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [AppointmentService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -31,4 +31,12 @@ export class LawyerService {
       headers,
     });
   }
+
+  getLawyerById(id: number): Observable<LawyerResponse> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
+
+    return this.http.get<LawyerResponse>(`${this.apiUrl}/${id}`, { headers });
+  }
 }

@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { LawyerDetailsComponent } from './lawyer/lawyer-details/lawyer-details.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     component: UserDashboardComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'lawyer-profile/:id', component: LawyerDetailsComponent },
   { path: '**', redirectTo: '' },
 ];
 

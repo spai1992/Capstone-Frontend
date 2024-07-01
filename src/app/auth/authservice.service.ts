@@ -33,6 +33,18 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  setUser(user: User): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getUser(): User | null {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      return JSON.parse(userJson) as User;
+    }
+    return null;
+  }
+
   isLoggedIn(): boolean {
     return !!this.getToken();
   }

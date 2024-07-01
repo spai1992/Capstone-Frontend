@@ -33,9 +33,9 @@
         <p class="card-text">{{ lawyer.specialization }}</p>
         <p class="card-text">{{ lawyer.description }}</p>
         <p class="card-text">{{ lawyer.city }}</p>
-        <a [routerLink]="['/lawyer-profile', lawyer.id]" class="btn btn-primary"
-          >View Profile</a
-        >
+        <button (click)="viewProfile(lawyer.id)" class="btn btn-primary">
+          View Profile
+        </button>
       </div>
     </div>
   </div>

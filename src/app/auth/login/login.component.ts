@@ -17,8 +17,9 @@ export class LoginComponent {
   login() {
     this.authService.login(this.loginData).subscribe(
       (response) => {
-        // Assume the response contains the JWT token
+        // Assume the response contains the JWT token and user details
         this.authService.setToken(response.token);
+        localStorage.setItem('user', JSON.stringify(response.user)); // Salva l'utente nel localStorage
         this.router.navigate(['/dashboard']);
       },
       (error) => {

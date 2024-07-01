@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LawyerService } from '../lawyer/lawyer.service';
 import { LawyerResponse } from '../models/lawyer-response';
 
@@ -12,7 +13,7 @@ export class UserDashboardComponent implements OnInit {
   searchCity: string = '';
   lawyers: LawyerResponse[] = [];
 
-  constructor(private lawyerService: LawyerService) {}
+  constructor(private lawyerService: LawyerService, private router: Router) {}
 
   ngOnInit(): void {
     this.searchLawyers();
@@ -26,12 +27,12 @@ export class UserDashboardComponent implements OnInit {
           this.lawyers = lawyers;
         },
         error: (err) => {
-          if (err.status === 403) {
-            console.error('Accesso negato. Assicurati di essere autenticato.');
-          } else {
-            console.error('Failed to load lawyers', err);
-          }
+          console.error('Failed to load lawyers', err);
         },
       });
+  }
+
+  viewProfile(lawyerId: number): void {
+    this.router.navigate(['/lawyer-profile', lawyerId]);
   }
 }

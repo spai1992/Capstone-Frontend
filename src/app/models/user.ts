@@ -1,4 +1,5 @@
 export interface User {
+  id?: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -6,9 +7,9 @@ export interface User {
   role: string;
   specialization?: string;
   description?: string;
-  city?: string; // Aggiungi questa linea se la città è necessaria per l'utente
+  city?: string;
   address?: string;
   phone?: string;
   profilePicture?: string;
-  roles: string[]; // Cambia da Set<string> a string[]
+  roles: string[];
 }

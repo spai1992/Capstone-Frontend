@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../authservice.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
-import { LawyerRequest } from '../../models/lawyer-request';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +10,7 @@ import { LawyerRequest } from '../../models/lawyer-request';
 })
 export class RegisterComponent {
   user: User = {
+    id: 0,
     firstName: '',
     lastName: '',
     email: '',
@@ -19,46 +19,45 @@ export class RegisterComponent {
     roles: [],
   };
 
-  lawyer: LawyerRequest = {
+  lawyer: User = {
+    id: 0,
     firstName: '',
     lastName: '',
     email: '',
     password: '',
+    role: 'lawyer',
+    roles: [],
     specialization: '',
     description: '',
     city: '',
     address: '',
     phone: '',
     profilePicture: '',
-    roles: [],
-    role: 'lawyer', // Imposta il ruolo dell'avvocato
   };
 
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  register() {
+  register(): void {
     if (this.user.role === 'user') {
-      this.user.roles = ['ROLE_USER'];
       this.authService.registerUser(this.user).subscribe(
-        (response) => {
-          this.authService.setToken(response.token);
+        () => {
           this.router.navigate(['/login']);
         },
         (error) => {
-          this.errorMessage = 'Registration failed';
+          this.errorMessage = 'Registration failed. Please try again.';
+          console.error(error);
         }
       );
-    } else if (this.user.role === 'lawyer') {
-      this.lawyer.roles = ['ROLE_LAWYER'];
+    } else {
       this.authService.registerLawyer(this.lawyer).subscribe(
-        (response) => {
-          this.authService.setToken(response.token);
+        () => {
           this.router.navigate(['/login']);
         },
         (error) => {
-          this.errorMessage = 'Registration failed';
+          this.errorMessage = 'Registration failed. Please try again.';
+          console.error(error);
         }
       );
     }
