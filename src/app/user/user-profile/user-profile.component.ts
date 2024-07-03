@@ -38,7 +38,6 @@ export class UserProfileComponent implements OnInit {
     if (this.selectedFile) {
       this.userService.uploadProfilePicture(this.selectedFile).subscribe({
         next: (response) => {
-          this.user.profilePicture = response.url; // Assuming response contains the URL
           this.saveUserProfile();
         },
         error: (err) => {

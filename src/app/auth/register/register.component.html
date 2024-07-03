@@ -73,6 +73,19 @@
         Password is required.
       </div>
     </div>
+    <div class="mb-3">
+      <label for="role" class="form-label">Role</label>
+      <select
+        id="role"
+        [(ngModel)]="user.role"
+        name="role"
+        class="form-select"
+        required
+      >
+        <option value="user">User</option>
+        <option value="lawyer">Lawyer</option>
+      </select>
+    </div>
     <div *ngIf="user.role === 'lawyer'">
       <div class="mb-3">
         <label for="specialization" class="form-label">Specialization</label>
@@ -191,19 +204,6 @@
           Profile picture URL is required.
         </div>
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="role" class="form-label">Role</label>
-      <select
-        id="role"
-        [(ngModel)]="user.role"
-        name="role"
-        class="form-select"
-        required
-      >
-        <option value="user">User</option>
-        <option value="lawyer">Lawyer</option>
-      </select>
     </div>
     <button
       type="submit"

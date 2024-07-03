@@ -9,11 +9,7 @@ const routes: Routes = [{ path: 'profile', component: UserProfileComponent }];
 
 @NgModule({
   declarations: [UserProfileComponent],
-  imports: [
-    CommonModule,
-    FormsModule, // Aggiungi FormsModule qui
-    RouterModule.forChild(routes),
-  ],
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
   providers: [UserService],
 })
 export class UserModule {}

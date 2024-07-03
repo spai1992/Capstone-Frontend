@@ -36,7 +36,7 @@ export class LawyerDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private lawyerService: LawyerService,
     private appointmentService: AppointmentService,
-    private authService: AuthService,
+    public authService: AuthService,
     private modalService: NgbModal
   ) {}
 

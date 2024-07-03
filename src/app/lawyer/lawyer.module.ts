@@ -1,17 +1,18 @@
+// src/app/lawyer/lawyer.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // Assicurati di importare FormsModule
 import { RouterModule, Routes } from '@angular/router';
+import { LawyersComponent } from './lawyers/lawyers.component';
 import { LawyerDetailsComponent } from './lawyer-details/lawyer-details.component';
-import { LawyersComponent } from './lawyers/lawyers.component'; // Importa il nuovo componente
 
 const routes: Routes = [
+  { path: '', component: LawyersComponent },
   { path: 'profile/:id', component: LawyerDetailsComponent },
-  { path: '', component: LawyersComponent }, // Aggiungi la rotta per LawyersComponent
 ];
 
 @NgModule({
-  declarations: [LawyerDetailsComponent, LawyersComponent],
-  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
+  declarations: [LawyersComponent, LawyerDetailsComponent],
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)], // Aggiungi FormsModule qui
 })
 export class LawyerModule {}

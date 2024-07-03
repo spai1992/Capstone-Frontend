@@ -1,14 +1,5 @@
 <div class="container mt-5">
   <h2>User Profile</h2>
-  <div class="text-center mb-4">
-    <img
-      [src]="user.profilePicture || 'https://via.placeholder.com/150'"
-      alt="Profile Picture"
-      class="rounded-circle"
-      width="150"
-      height="150"
-    />
-  </div>
   <div>
     <p><strong>First Name:</strong> {{ user.firstName }}</p>
     <p><strong>Last Name:</strong> {{ user.lastName }}</p>
@@ -105,15 +96,6 @@
           >
             Password is required.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="profilePicture" class="form-label">Profile Picture</label>
-          <input
-            type="file"
-            id="profilePicture"
-            (change)="onFileSelected($event)"
-            class="form-control"
-          />
         </div>
         <button
           type="submit"

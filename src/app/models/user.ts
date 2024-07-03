@@ -5,11 +5,5 @@ export interface User {
   email: string;
   password: string;
   role: string;
-  specialization?: string;
-  description?: string;
-  city?: string;
-  address?: string;
-  phone?: string;
-  profilePicture?: string;
   roles: string[];
 }

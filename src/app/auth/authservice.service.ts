@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
+import { Lawyer } from '../models/lawyer';
 import { LoginData } from '../models/login-data';
 
 @Injectable({
@@ -17,8 +18,8 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/auth/signup/user`, user);
   }
 
-  registerLawyer(user: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/auth/signup/lawyer`, user);
+  registerLawyer(lawyer: Lawyer): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/auth/signup/lawyer`, lawyer);
   }
 
   login(loginData: LoginData): Observable<any> {
@@ -37,10 +38,10 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getUser(): User | null {
+  getUser(): User | Lawyer | null {
     const userJson = localStorage.getItem('user');
     if (userJson) {
-      return JSON.parse(userJson) as User;
+      return JSON.parse(userJson) as User | Lawyer;
     }
     return null;
   }

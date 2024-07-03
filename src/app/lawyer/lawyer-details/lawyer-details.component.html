@@ -9,12 +9,19 @@
         <li class="list-group-item">Address: {{ lawyer.address }}</li>
         <li class="list-group-item">Phone: {{ lawyer.phone }}</li>
       </ul>
-      <button
-        class="btn btn-primary mt-3"
-        (click)="openAppointmentModal(content)"
-      >
-        Book Appointment
-      </button>
+      <div *ngIf="authService.isLoggedIn(); else loginMessage">
+        <button
+          class="btn btn-primary mt-3"
+          (click)="openAppointmentModal(content)"
+        >
+          Book Appointment
+        </button>
+      </div>
+      <ng-template #loginMessage>
+        <p class="text-muted mt-3">
+          Per poter prendere appuntamento effettua il login o registrati.
+        </p>
+      </ng-template>
     </div>
   </div>
 </div>
