@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../authservice.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
@@ -9,6 +9,8 @@ import { User } from '../../models/user';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  @Output() closeModal = new EventEmitter<void>();
+
   user: User = {
     id: 0,
     firstName: '',
@@ -44,6 +46,7 @@ export class RegisterComponent {
       this.authService.registerUser(this.user).subscribe(
         () => {
           this.router.navigate(['/login']);
+          this.closeModal.emit();
         },
         (error) => {
           this.errorMessage = 'Registration failed. Please try again.';
@@ -54,6 +57,7 @@ export class RegisterComponent {
       this.authService.registerLawyer(this.lawyer).subscribe(
         () => {
           this.router.navigate(['/login']);
+          this.closeModal.emit();
         },
         (error) => {
           this.errorMessage = 'Registration failed. Please try again.';

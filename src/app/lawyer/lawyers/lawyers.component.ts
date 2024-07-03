@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LawyerService } from '../../lawyer/lawyer.service';
+import { LawyerService } from '../lawyer.service';
 import { LawyerResponse } from '../../models/lawyer-response';
 
 @Component({
-  selector: 'app-user-dashboard',
-  templateUrl: './user-dashboard.component.html',
-  styleUrls: ['./user-dashboard.component.scss'],
+  selector: 'app-lawyers',
+  templateUrl: './lawyers.component.html',
+  styleUrls: ['./lawyers.component.scss'],
 })
-export class UserDashboardComponent implements OnInit {
+export class LawyersComponent implements OnInit {
   searchKeyword: string = '';
   searchCity: string = '';
   lawyers: LawyerResponse[] = [];

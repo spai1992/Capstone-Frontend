@@ -22,9 +22,11 @@ export class LawyerService {
       params = params.set('city', city);
     }
 
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.authService.getToken()}`,
-    });
+    let headers = new HttpHeaders();
+    const token = this.authService.getToken();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
 
     return this.http.get<LawyerResponse[]>(`${this.apiUrl}/search`, {
       params,
@@ -33,9 +35,11 @@ export class LawyerService {
   }
 
   getLawyerById(id: number): Observable<LawyerResponse> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.authService.getToken()}`,
-    });
+    let headers = new HttpHeaders();
+    const token = this.authService.getToken();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
 
     return this.http.get<LawyerResponse>(`${this.apiUrl}/${id}`, { headers });
   }

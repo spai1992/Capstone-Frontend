@@ -19,5 +19,6 @@ import { GuestGuard } from './guest.guard';
     AuthRoutingModule,
   ],
   providers: [AuthService, AuthGuard, GuestGuard],
+  exports: [LoginComponent, RegisterComponent], // Esporta i componenti qui
 })
 export class AuthModule {}

@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent implements OnInit {
-  constructor(private router: Router) {}
+export class LandingPageComponent {
+  @ViewChild('loginModal') loginModal: any;
+  @ViewChild('registerModal') registerModal: any;
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private modalService: NgbModal) {}
 
-  navigateToLogin(): void {
-    this.router.navigate(['/login']);
+  openLoginModal(): void {
+    this.modalService.open(this.loginModal);
   }
 
-  navigateToRegister(): void {
-    this.router.navigate(['/register']);
+  openRegisterModal(): void {
+    this.modalService.open(this.registerModal);
   }
 }

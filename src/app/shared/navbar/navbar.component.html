@@ -1,53 +1,48 @@
-<!-- src/app/shared/navbar/navbar.component.html -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Lawtus</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-        </li>
-        <li class="nav-item dropdown" ngbDropdown>
-          <a
-            class="nav-link dropdown-toggle"
-            id="navbarDropdown"
-            role="button"
-            ngbDropdownToggle
-            aria-expanded="false"
-          >
-            Account
-          </a>
-          <ul
-            class="dropdown-menu"
-            ngbDropdownMenu
-            aria-labelledby="navbarDropdown"
-          >
-            <li>
-              <a class="dropdown-item" routerLink="/login">Login</a>
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/register">Register</a>
-            </li>
-            <li *ngIf="authService.isLoggedIn()">
-              <a class="dropdown-item" (click)="logout()">Logout</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <div class="d-flex flex-grow-1 justify-content-between align-items-center">
+      <div class="d-flex">
+        <a class="nav-link" routerLink="/">Home</a>
+        <a class="nav-link" routerLink="/lawyers">Lawyers</a>
+      </div>
+      <div class="d-flex">
+        <a class="nav-link" (click)="openLoginModal()">Login</a>
+        <a class="nav-link" (click)="openRegisterModal()">Register</a>
+        <a class="nav-link" *ngIf="authService.isLoggedIn()" (click)="logout()"
+          >Logout</a
+        >
+      </div>
     </div>
   </div>
 </nav>
+
+<ng-template #loginModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Login</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-login (closeModal)="modal.close()"></app-login>
+  </div>
+</ng-template>
+
+<ng-template #registerModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Register</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-register (closeModal)="modal.close()"></app-register>
+  </div>
+</ng-template>
