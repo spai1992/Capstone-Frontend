@@ -1,17 +1,15 @@
-// src/app/shared/appointment-modal/appointment-modal.component.ts
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from '../../auth/authservice.service';
 import { AppointmentService } from '../../appointment/appointment.service';
-import { LawyerResponse } from '../../models/lawyer-response';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Lawyer } from '../../models/lawyer';
 
 @Component({
   selector: 'app-appointment-modal',
   templateUrl: './appointment-modal.component.html',
   styleUrls: ['./appointment-modal.component.scss'],
 })
-export class AppointmentModalComponent implements OnInit {
-  @Input() lawyer: LawyerResponse | null = null;
+export class AppointmentModalComponent {
+  @Input() lawyer: Lawyer | null = null;
   @Output() closeModalEvent = new EventEmitter<void>();
 
   appointmentDate: string = '';
@@ -30,20 +28,14 @@ export class AppointmentModalComponent implements OnInit {
     '18:00',
   ];
   errorMessage: string = '';
-  user: any;
 
   constructor(
     private appointmentService: AppointmentService,
-    private authService: AuthService,
-    public activeModal: NgbActiveModal
-  ) {
-    this.user = this.authService.getUser();
-  }
-
-  ngOnInit(): void {}
+    private authService: AuthService
+  ) {}
 
   closeModal(): void {
-    this.activeModal.dismiss();
+    this.closeModalEvent.emit();
   }
 
   bookAppointment(): void {
@@ -52,7 +44,7 @@ export class AppointmentModalComponent implements OnInit {
     if (this.lawyer && currentUser && currentUser.id) {
       const appointmentRequest = {
         userId: currentUser.id,
-        lawyerId: this.lawyer.id,
+        lawyerId: this.lawyer.id!,
         appointmentDate: `${this.appointmentDate}T${this.appointmentTime}:00`,
         description: this.appointmentDescription,
       };
@@ -60,7 +52,7 @@ export class AppointmentModalComponent implements OnInit {
       this.appointmentService.bookAppointment(appointmentRequest).subscribe({
         next: () => {
           console.log('Appointment booked successfully');
-          this.closeModal();
+          this.closeModal(); // Close the modal after successful booking
         },
         error: (err) => {
           console.error('Failed to book appointment', err);

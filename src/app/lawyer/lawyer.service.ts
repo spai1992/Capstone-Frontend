@@ -40,7 +40,7 @@ export class LawyerService {
 
   searchLawyers(keyword: string, city: string): Observable<Lawyer[]> {
     return this.http.get<Lawyer[]>(
-      `${this.apiUrl}?keyword=${keyword}&city=${city}`
+      `${this.apiUrl}/search?keyword=${keyword}&city=${city}`
     );
   }
 }

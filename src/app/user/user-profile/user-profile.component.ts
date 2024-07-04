@@ -1,4 +1,3 @@
-// src/app/user/user-profile/user-profile.component.ts
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../user.service';
@@ -34,17 +33,21 @@ export class UserProfileComponent implements OnInit {
   }
 
   loadAppointments(): void {
-    this.appointmentService.getAppointmentsByUser(this.user.id!).subscribe({
-      next: (appointments) => {
-        // Filtra solo gli appuntamenti confermati
-        this.appointments = appointments.filter(
-          (appointment) => appointment.confirmed
-        );
-      },
-      error: (err) => {
-        console.error('Failed to load appointments', err);
-      },
-    });
+    if (this.authService.isLoggedIn()) {
+      this.appointmentService.getAppointmentsByUser(this.user.id!).subscribe({
+        next: (appointments) => {
+          // Filtra solo gli appuntamenti confermati
+          this.appointments = appointments.filter(
+            (appointment) => appointment.confirmed
+          );
+        },
+        error: (err) => {
+          console.error('Failed to load appointments', err);
+        },
+      });
+    } else {
+      console.error('User is not authenticated');
+    }
   }
 
   openEditModal(): void {
