@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from '../../models/user';
-import { UserService } from '../user.service';
-import { AuthService } from '../../auth/authservice.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../auth/authservice.service';
 import { AppointmentService } from '../../appointment/appointment.service';
+import { UserService } from '../user.service';
 import { Appointment } from '../../models/appointment';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,19 +13,19 @@ import { Appointment } from '../../models/appointment';
 })
 export class UserProfileComponent implements OnInit {
   user: User;
+  appointments: Appointment[] = [];
   errorMessage: string = '';
   selectedFile: File | null = null;
-  appointments: Appointment[] = [];
 
   @ViewChild('editModal') editModal: any;
 
   constructor(
-    private userService: UserService,
     private authService: AuthService,
-    private modalService: NgbModal,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private userService: UserService,
+    private modalService: NgbModal
   ) {
-    this.user = this.authService.getUser()!;
+    this.user = this.authService.getUser() as User;
   }
 
   ngOnInit(): void {
@@ -33,21 +33,14 @@ export class UserProfileComponent implements OnInit {
   }
 
   loadAppointments(): void {
-    if (this.authService.isLoggedIn()) {
-      this.appointmentService.getAppointmentsByUser(this.user.id!).subscribe({
-        next: (appointments) => {
-          // Filtra solo gli appuntamenti confermati
-          this.appointments = appointments.filter(
-            (appointment) => appointment.confirmed
-          );
-        },
-        error: (err) => {
-          console.error('Failed to load appointments', err);
-        },
-      });
-    } else {
-      console.error('User is not authenticated');
-    }
+    this.appointmentService.getAppointmentsByUser(this.user.id!).subscribe({
+      next: (appointments) => {
+        this.appointments = appointments;
+      },
+      error: (err) => {
+        console.error('Failed to load appointments', err);
+      },
+    });
   }
 
   openEditModal(): void {
@@ -62,6 +55,7 @@ export class UserProfileComponent implements OnInit {
     if (this.selectedFile) {
       this.userService.uploadProfilePicture(this.selectedFile).subscribe({
         next: (response) => {
+          this.user.profilePicture = response.url;
           this.saveUserProfile();
         },
         error: (err) => {
