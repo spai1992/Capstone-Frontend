@@ -39,8 +39,12 @@ export class LawyerService {
   }
 
   searchLawyers(keyword: string, city: string): Observable<Lawyer[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
     return this.http.get<Lawyer[]>(
-      `${this.apiUrl}/search?keyword=${keyword}&city=${city}`
+      `${this.apiUrl}/search?keyword=${keyword}&city=${city}`,
+      { headers }
     );
   }
 }

@@ -36,9 +36,7 @@ export class LawyerProfileComponent implements OnInit {
   loadAppointments(): void {
     this.appointmentService.getAppointmentsByLawyer(this.lawyer.id!).subscribe({
       next: (appointments) => {
-        this.appointments = appointments.filter(
-          (appointment) => appointment.confirmed
-        );
+        this.appointments = appointments;
       },
       error: (err) => {
         console.error('Failed to load appointments', err);

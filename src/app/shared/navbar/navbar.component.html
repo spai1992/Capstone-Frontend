@@ -22,7 +22,7 @@
         <a
           class="nav-link"
           *ngIf="authService.isLoggedIn()"
-          routerLink="/profile"
+          (click)="navigateToProfile()"
           >Profile</a
         >
         <a class="nav-link" *ngIf="authService.isLoggedIn()" (click)="logout()"

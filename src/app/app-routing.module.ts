@@ -5,6 +5,7 @@ import { GuestGuard } from './auth/guest.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { LawyerProfileComponent } from './lawyer/lawyer-profile/lawyer-profile.component'; // Importa il componente del profilo avvocato
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'lawyer-profile', // Aggiungi questa rotta per il profilo avvocato
+    component: LawyerProfileComponent,
     canActivate: [AuthGuard],
   },
   {
