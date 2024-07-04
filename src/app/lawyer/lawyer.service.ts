@@ -1,8 +1,9 @@
+// src/app/lawyer/lawyer.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LawyerResponse } from '../models/lawyer-response';
 import { environment } from '../../environments/environment';
+import { Lawyer } from '../models/lawyer';
 import { AuthService } from '../auth/authservice.service';
 
 @Injectable({
@@ -13,34 +14,33 @@ export class LawyerService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  searchLawyers(keyword?: string, city?: string): Observable<LawyerResponse[]> {
-    let params = new HttpParams();
-    if (keyword) {
-      params = params.set('keyword', keyword);
-    }
-    if (city) {
-      params = params.set('city', city);
-    }
-
-    let headers = new HttpHeaders();
-    const token = this.authService.getToken();
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
-
-    return this.http.get<LawyerResponse[]>(`${this.apiUrl}/search`, {
-      params,
-      headers,
+  getLawyerById(id: number): Observable<Lawyer> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`,
     });
+    return this.http.get<Lawyer>(`${this.apiUrl}/${id}`, { headers });
   }
 
-  getLawyerById(id: number): Observable<LawyerResponse> {
-    let headers = new HttpHeaders();
-    const token = this.authService.getToken();
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
+  updateLawyer(lawyer: Lawyer): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.put(`${this.apiUrl}/${lawyer.id}`, lawyer, { headers });
+  }
 
-    return this.http.get<LawyerResponse>(`${this.apiUrl}/${id}`, { headers });
+  uploadProfilePicture(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
+    return this.http.post(`${this.apiUrl}/upload`, formData, { headers });
+  }
+
+  searchLawyers(keyword: string, city: string): Observable<Lawyer[]> {
+    return this.http.get<Lawyer[]>(
+      `${this.apiUrl}?keyword=${keyword}&city=${city}`
+    );
   }
 }

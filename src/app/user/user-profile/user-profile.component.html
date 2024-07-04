@@ -1,15 +1,36 @@
+<!-- src/app/user/user-profile/user-profile.component.html -->
 <div class="container mt-5">
-  <h2>User Profile</h2>
-  <div>
-    <p><strong>First Name:</strong> {{ user.firstName }}</p>
-    <p><strong>Last Name:</strong> {{ user.lastName }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <button class="btn btn-primary" (click)="openEditModal()">
-      Edit Profile
-    </button>
+  <div class="card">
+    <div class="card-body">
+      <h2>User Profile</h2>
+      <div>
+        <p><strong>First Name:</strong> {{ user.firstName }}</p>
+        <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <button class="btn btn-primary" (click)="openEditModal()">
+          Edit Profile
+        </button>
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        {{ errorMessage }}
+      </div>
+    </div>
   </div>
-  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
-    {{ errorMessage }}
+
+  <!-- Section for appointments -->
+  <div class="card mt-4">
+    <div class="card-body">
+      <h3>Your Appointments</h3>
+      <div *ngIf="appointments.length === 0">No appointments found.</div>
+      <ul *ngIf="appointments.length > 0" class="list-group">
+        <li *ngFor="let appointment of appointments" class="list-group-item">
+          <p><strong>Date:</strong> {{ appointment.appointmentDate }}</p>
+          <p><strong>End Date:</strong> {{ appointment.endDate }}</p>
+          <p><strong>Description:</strong> {{ appointment.description }}</p>
+          <p><strong>Confirmed:</strong> {{ appointment.confirmed }}</p>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <!-- Modal for editing profile -->

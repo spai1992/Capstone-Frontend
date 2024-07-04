@@ -1,3 +1,4 @@
+// src/app/auth/authservice.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -34,7 +35,7 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  setUser(user: User): void {
+  setUser(user: User | Lawyer): void {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
@@ -42,6 +43,17 @@ export class AuthService {
     const userJson = localStorage.getItem('user');
     if (userJson) {
       return JSON.parse(userJson) as User | Lawyer;
+    }
+    return null;
+  }
+
+  getLawyer(): Lawyer | null {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const user = JSON.parse(userJson);
+      if (user && (user as Lawyer).specialization) {
+        return user as Lawyer;
+      }
     }
     return null;
   }

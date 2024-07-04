@@ -1,0 +1,53 @@
+<!-- src/app/shared/appointment-modal/appointment-modal.component.html -->
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Book Appointment</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="closeModal()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="bookAppointment()">
+    <div class="form-group">
+      <label for="appointmentDate">Date</label>
+      <input
+        type="date"
+        id="appointmentDate"
+        class="form-control"
+        [(ngModel)]="appointmentDate"
+        name="appointmentDate"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="appointmentTime">Time</label>
+      <select
+        id="appointmentTime"
+        class="form-control"
+        [(ngModel)]="appointmentTime"
+        name="appointmentTime"
+        required
+      >
+        <option *ngFor="let time of availableTimes" [value]="time">
+          {{ time }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="appointmentDescription">Description</label>
+      <textarea
+        id="appointmentDescription"
+        class="form-control"
+        [(ngModel)]="appointmentDescription"
+        name="appointmentDescription"
+        required
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Book</button>
+  </form>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+</div>

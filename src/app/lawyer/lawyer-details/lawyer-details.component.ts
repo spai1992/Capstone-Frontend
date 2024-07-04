@@ -1,8 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LawyerService } from '../lawyer.service';
-import { LawyerResponse } from '../../models/lawyer-response';
-import { AppointmentService } from '../../appointment/appointment.service';
+import { Lawyer } from '../../models/lawyer';
 import { AuthService } from '../../auth/authservice.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,30 +11,13 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./lawyer-details.component.scss'],
 })
 export class LawyerDetailsComponent implements OnInit {
-  lawyer: LawyerResponse | null = null;
+  lawyer: Lawyer | null = null;
   showModal: boolean = false;
-  appointmentDate: string = '';
-  appointmentTime: string = '';
-  appointmentDescription: string = '';
   closeResult: string = '';
-  availableTimes: string[] = [
-    '09:00',
-    '10:00',
-    '11:00',
-    '12:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
-    '18:00',
-  ];
-  errorMessage: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private lawyerService: LawyerService,
-    private appointmentService: AppointmentService,
     public authService: AuthService,
     private modalService: NgbModal
   ) {}
@@ -75,39 +57,6 @@ export class LawyerDetailsComponent implements OnInit {
       return 'by clicking on a backdrop';
     } else {
       return `with: ${reason}`;
-    }
-  }
-
-  closeModal(): void {
-    console.log('Closing appointment modal');
-    this.showModal = false;
-    console.log('showModal:', this.showModal);
-  }
-
-  bookAppointment(modal: any): void {
-    this.errorMessage = ''; // Clear previous error messages
-    const currentUser = this.authService.getUser();
-    if (this.lawyer && currentUser && currentUser.id) {
-      const appointmentRequest = {
-        userId: currentUser.id,
-        lawyerId: this.lawyer.id,
-        appointmentDate: `${this.appointmentDate}T${this.appointmentTime}:00`,
-        description: this.appointmentDescription,
-      };
-
-      this.appointmentService.bookAppointment(appointmentRequest).subscribe({
-        next: () => {
-          console.log('Appointment booked successfully');
-          modal.close();
-          this.closeModal();
-        },
-        error: (err) => {
-          console.error('Failed to book appointment', err);
-          this.errorMessage = err.error
-            ? err.error
-            : 'An error occurred while booking the appointment.';
-        },
-      });
     }
   }
 }

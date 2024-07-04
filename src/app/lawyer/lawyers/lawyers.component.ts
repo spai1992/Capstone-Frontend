@@ -1,7 +1,8 @@
+// src/app/lawyer/lawyers/lawyers.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LawyerService } from '../lawyer.service';
-import { LawyerResponse } from '../../models/lawyer-response';
+import { Lawyer } from '../../models/lawyer';
 
 @Component({
   selector: 'app-lawyers',
@@ -11,7 +12,7 @@ import { LawyerResponse } from '../../models/lawyer-response';
 export class LawyersComponent implements OnInit {
   searchKeyword: string = '';
   searchCity: string = '';
-  lawyers: LawyerResponse[] = [];
+  lawyers: Lawyer[] = [];
 
   constructor(private lawyerService: LawyerService, private router: Router) {}
 
@@ -23,7 +24,7 @@ export class LawyersComponent implements OnInit {
     this.lawyerService
       .searchLawyers(this.searchKeyword, this.searchCity)
       .subscribe({
-        next: (lawyers: LawyerResponse[]) => {
+        next: (lawyers: Lawyer[]) => {
           this.lawyers = lawyers;
         },
         error: (err) => {

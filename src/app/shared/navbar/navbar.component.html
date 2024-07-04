@@ -7,8 +7,24 @@
         <a class="nav-link" routerLink="/lawyers">Lawyers</a>
       </div>
       <div class="d-flex">
-        <a class="nav-link" (click)="openLoginModal()">Login</a>
-        <a class="nav-link" (click)="openRegisterModal()">Register</a>
+        <a
+          class="nav-link"
+          *ngIf="!authService.isLoggedIn()"
+          (click)="openLoginModal()"
+          >Login</a
+        >
+        <a
+          class="nav-link"
+          *ngIf="!authService.isLoggedIn()"
+          (click)="openRegisterModal()"
+          >Register</a
+        >
+        <a
+          class="nav-link"
+          *ngIf="authService.isLoggedIn()"
+          routerLink="/profile"
+          >Profile</a
+        >
         <a class="nav-link" *ngIf="authService.isLoggedIn()" (click)="logout()"
           >Logout</a
         >

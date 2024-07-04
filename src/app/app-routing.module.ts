@@ -4,6 +4,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { GuestGuard } from './auth/guest.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    component: UserProfileComponent,
     canActivate: [AuthGuard],
   },
   {

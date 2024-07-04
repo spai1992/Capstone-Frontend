@@ -1,4 +1,3 @@
-// src/app/user/user.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,9 +16,9 @@ export class UserService {
     return this.http.put<User>(`${this.apiUrl}/${user.id}`, user);
   }
 
-  uploadProfilePicture(file: File): Observable<any> {
+  uploadProfilePicture(file: File): Observable<{ url: string }> {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post<any>(`${this.apiUrl}/upload`, formData);
+    return this.http.post<{ url: string }>(`${this.apiUrl}/upload`, formData);
   }
 }

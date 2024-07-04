@@ -1,12 +1,11 @@
+// src/app/appointment/appointment.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { AppointmentService } from './appointment.service';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule],
+  providers: [AppointmentService],
 })
-export class AppointmentModule { }
+export class AppointmentModule {}

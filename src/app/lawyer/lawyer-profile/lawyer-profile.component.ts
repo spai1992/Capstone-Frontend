@@ -1,19 +1,19 @@
-// src/app/user/user-profile/user-profile.component.ts
+// src/app/lawyer/lawyer-profile/lawyer-profile.component.ts
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from '../../models/user';
-import { UserService } from '../user.service';
+import { Lawyer } from '../../models/lawyer';
+import { LawyerService } from '../lawyer.service';
 import { AuthService } from '../../auth/authservice.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppointmentService } from '../../appointment/appointment.service';
 import { Appointment } from '../../models/appointment';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss'],
+  selector: 'app-lawyer-profile',
+  templateUrl: './lawyer-profile.component.html',
+  styleUrls: ['./lawyer-profile.component.scss'],
 })
-export class UserProfileComponent implements OnInit {
-  user: User;
+export class LawyerProfileComponent implements OnInit {
+  lawyer: Lawyer;
   errorMessage: string = '';
   selectedFile: File | null = null;
   appointments: Appointment[] = [];
@@ -21,12 +21,12 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('editModal') editModal: any;
 
   constructor(
-    private userService: UserService,
+    private lawyerService: LawyerService,
     private authService: AuthService,
     private modalService: NgbModal,
     private appointmentService: AppointmentService
   ) {
-    this.user = this.authService.getUser()!;
+    this.lawyer = this.authService.getLawyer() as Lawyer;
   }
 
   ngOnInit(): void {
@@ -34,9 +34,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   loadAppointments(): void {
-    this.appointmentService.getAppointmentsByUser(this.user.id!).subscribe({
+    this.appointmentService.getAppointmentsByLawyer(this.lawyer.id!).subscribe({
       next: (appointments) => {
-        // Filtra solo gli appuntamenti confermati
         this.appointments = appointments.filter(
           (appointment) => appointment.confirmed
         );
@@ -57,9 +56,9 @@ export class UserProfileComponent implements OnInit {
 
   updateProfile(): void {
     if (this.selectedFile) {
-      this.userService.uploadProfilePicture(this.selectedFile).subscribe({
+      this.lawyerService.uploadProfilePicture(this.selectedFile).subscribe({
         next: (response) => {
-          this.saveUserProfile();
+          this.saveLawyerProfile();
         },
         error: (err) => {
           console.error('Failed to upload profile picture', err);
@@ -68,12 +67,12 @@ export class UserProfileComponent implements OnInit {
         },
       });
     } else {
-      this.saveUserProfile();
+      this.saveLawyerProfile();
     }
   }
 
-  saveUserProfile(): void {
-    this.userService.updateUser(this.user).subscribe({
+  saveLawyerProfile(): void {
+    this.lawyerService.updateLawyer(this.lawyer).subscribe({
       next: () => {
         console.log('Profile updated successfully');
         this.modalService.dismissAll();
