@@ -1,4 +1,3 @@
-// src/app/lawyer/lawyer.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -27,15 +26,6 @@ export class LawyerService {
       'Content-Type': 'application/json',
     });
     return this.http.put(`${this.apiUrl}/${lawyer.id}`, lawyer, { headers });
-  }
-
-  uploadProfilePicture(file: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', file);
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.authService.getToken()}`,
-    });
-    return this.http.post(`${this.apiUrl}/upload`, formData, { headers });
   }
 
   searchLawyers(keyword: string, city: string): Observable<Lawyer[]> {

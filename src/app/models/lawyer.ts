@@ -1,6 +1,5 @@
-// src/app/models/lawyer.ts
 export interface Lawyer {
-  id: number; // Cambia qui
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
