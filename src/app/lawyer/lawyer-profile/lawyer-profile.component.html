@@ -2,6 +2,26 @@
   <div class="card">
     <div class="card-body">
       <h2>Profilo Avvocato</h2>
+      <div class="profile-pic-container">
+        <div class="profile-pic-wrapper">
+          <img
+            *ngIf="lawyer.profilePicture"
+            [src]="lawyer.profilePicture"
+            alt="Profile Picture"
+            class="profile-pic"
+          />
+          <div *ngIf="!lawyer.profilePicture" class="profile-pic-placeholder">
+            No Image
+          </div>
+          <button class="btn-upload-pic" (click)="triggerFileInput()">+</button>
+          <input
+            type="file"
+            #fileInput
+            class="file-upload-input"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+      </div>
       <div>
         <p><strong>Nome:</strong> {{ lawyer.firstName }}</p>
         <p><strong>Cognome:</strong> {{ lawyer.lastName }}</p>
@@ -10,12 +30,6 @@
         <p><strong>Indirizzo:</strong> {{ lawyer.address }}</p>
         <p><strong>Specializzazione:</strong> {{ lawyer.specialization }}</p>
         <p><strong>Descrizione:</strong> {{ lawyer.description }}</p>
-        <img
-          *ngIf="lawyer.profilePicture"
-          [src]="lawyer.profilePicture"
-          alt="Profile Picture"
-          class="img-fluid mt-3"
-        />
         <button class="btn btn-primary mt-3" (click)="openEditModal()">
           Modifica Profilo
         </button>

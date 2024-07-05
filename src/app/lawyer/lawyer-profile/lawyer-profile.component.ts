@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Lawyer } from '../../models/lawyer';
 import { LawyerService } from '../lawyer.service';
 import { AuthService } from '../../auth/authservice.service';
@@ -15,8 +15,10 @@ export class LawyerProfileComponent implements OnInit {
   lawyer: Lawyer;
   errorMessage: string = '';
   appointments: Appointment[] = [];
+  selectedFile: File | null = null;
 
   @ViewChild('editModal') editModal: any;
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   constructor(
     private lawyerService: LawyerService,
@@ -44,6 +46,32 @@ export class LawyerProfileComponent implements OnInit {
 
   openEditModal(): void {
     this.modalService.open(this.editModal);
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+    this.uploadProfilePicture();
+  }
+
+  triggerFileInput(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  uploadProfilePicture(): void {
+    if (this.selectedFile) {
+      this.lawyerService
+        .uploadProfilePicture(this.selectedFile, this.lawyer.id!)
+        .subscribe({
+          next: (response) => {
+            this.lawyer.profilePicture = response.url;
+          },
+          error: (err) => {
+            console.error('Failed to upload profile picture', err);
+            this.errorMessage =
+              'Failed to upload profile picture. Please try again.';
+          },
+        });
+    }
   }
 
   updateProfile(): void {

@@ -37,4 +37,22 @@ export class LawyerService {
       { headers }
     );
   }
+
+  uploadProfilePicture(
+    file: File,
+    lawyerId: number
+  ): Observable<{ url: string }> {
+    const formData = new FormData();
+    formData.append('file', file);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`,
+    });
+    return this.http.post<{ url: string }>(
+      `${this.apiUrl}/${lawyerId}/upload`,
+      formData,
+      {
+        headers,
+      }
+    );
+  }
 }

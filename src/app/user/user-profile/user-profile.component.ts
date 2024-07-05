@@ -49,14 +49,15 @@ export class UserProfileComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
+    this.updateProfilePicture();
   }
 
-  updateProfile(): void {
+  updateProfilePicture(): void {
     if (this.selectedFile) {
       this.userService.uploadProfilePicture(this.selectedFile).subscribe({
         next: (response) => {
           this.user.profilePicture = response.url;
-          this.saveUserProfile();
+          this.authService.setUser(this.user); // Save the updated user profile with the new image URL
         },
         error: (err) => {
           console.error('Failed to upload profile picture', err);
@@ -64,12 +65,10 @@ export class UserProfileComponent implements OnInit {
             'Failed to upload profile picture. Please try again.';
         },
       });
-    } else {
-      this.saveUserProfile();
     }
   }
 
-  saveUserProfile(): void {
+  updateProfile(): void {
     this.userService.updateUser(this.user).subscribe({
       next: () => {
         console.log('Profile updated successfully');
