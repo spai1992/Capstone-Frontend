@@ -181,29 +181,6 @@
           Phone number is required.
         </div>
       </div>
-      <div class="mb-3">
-        <label for="profilePicture" class="form-label"
-          >Profile Picture URL</label
-        >
-        <input
-          type="text"
-          id="profilePicture"
-          [(ngModel)]="lawyer.profilePicture"
-          name="profilePicture"
-          class="form-control"
-          required
-          #profilePicture="ngModel"
-        />
-        <div
-          *ngIf="
-            profilePicture.invalid &&
-            (profilePicture.dirty || profilePicture.touched)
-          "
-          class="text-danger"
-        >
-          Profile picture URL is required.
-        </div>
-      </div>
     </div>
     <button
       type="submit"

@@ -30,6 +30,7 @@
         <p><strong>Indirizzo:</strong> {{ lawyer.address }}</p>
         <p><strong>Specializzazione:</strong> {{ lawyer.specialization }}</p>
         <p><strong>Descrizione:</strong> {{ lawyer.description }}</p>
+        <p><strong>Città:</strong> {{ lawyer.city }}</p>
         <button class="btn btn-primary mt-3" (click)="openEditModal()">
           Modifica Profilo
         </button>
@@ -50,10 +51,9 @@
           <p><strong>Data:</strong> {{ appointment.appointmentDate }}</p>
           <p><strong>Fine Data:</strong> {{ appointment.endDate }}</p>
           <p><strong>Descrizione:</strong> {{ appointment.description }}</p>
-          <p><strong>Confermato:</strong> {{ appointment.confirmed }}</p>
           <p>
-            <strong>Cliente:</strong> {{ appointment.user?.firstName }}
-            {{ appointment.user?.lastName }}
+            <strong>Cliente:</strong> {{ appointment.userFirstName }}
+            {{ appointment.userLastName }}
           </p>
         </li>
       </ul>

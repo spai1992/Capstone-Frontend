@@ -10,6 +10,6 @@ export interface Lawyer {
   city: string;
   address: string;
   phone: string;
-  profilePicture: string;
+  profilePicture: string | null; // Consenti null
   roles: string[];
 }

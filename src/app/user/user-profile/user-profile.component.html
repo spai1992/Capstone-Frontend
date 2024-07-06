@@ -51,7 +51,10 @@
           <p><strong>Date:</strong> {{ appointment.appointmentDate }}</p>
           <p><strong>End Date:</strong> {{ appointment.endDate }}</p>
           <p><strong>Description:</strong> {{ appointment.description }}</p>
-          <p><strong>Confirmed:</strong> {{ appointment.confirmed }}</p>
+          <p>
+            <strong>Lawyer:</strong> {{ appointment.lawyerFirstName }}
+            {{ appointment.lawyerLastName }}
+          </p>
         </li>
       </ul>
     </div>

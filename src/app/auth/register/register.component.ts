@@ -35,7 +35,7 @@ export class RegisterComponent {
     city: '',
     address: '',
     phone: '',
-    profilePicture: '',
+    profilePicture: null,
   };
 
   errorMessage: string = '';
@@ -45,8 +45,10 @@ export class RegisterComponent {
   register(): void {
     if (this.user.role === 'user') {
       this.authService.registerUser(this.user).subscribe(
-        () => {
-          this.router.navigate(['/login']);
+        (response) => {
+          this.authService.setToken(response.token);
+          this.authService.setUser(response.user);
+          this.router.navigate(['/lawyers']);
           this.closeModal.emit();
         },
         (error) => {
@@ -63,8 +65,10 @@ export class RegisterComponent {
       this.lawyer.roles = this.user.roles;
 
       this.authService.registerLawyer(this.lawyer).subscribe(
-        () => {
-          this.router.navigate(['/login']);
+        (response) => {
+          this.authService.setToken(response.token);
+          this.authService.setUser(response.user);
+          this.router.navigate(['/lawyer-profile']);
           this.closeModal.emit();
         },
         (error) => {

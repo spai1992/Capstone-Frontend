@@ -65,6 +65,11 @@ export class AuthService {
     return this.isLoggedIn();
   }
 
+  isLawyer(): boolean {
+    const user = this.getUser();
+    return !!(user && (user as Lawyer).specialization !== undefined);
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');

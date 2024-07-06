@@ -1,4 +1,3 @@
-// src/app/models/appointment.ts
 export interface Appointment {
   id: number;
   appointmentDate: string;
@@ -11,5 +10,9 @@ export interface Appointment {
   user?: {
     firstName: string;
     lastName: string;
-  }; // Aggiungi questa parte per includere le informazioni dell'utente
+  };
+  userFirstName?: string; // Campo già presente
+  userLastName?: string; // Campo già presente
+  lawyerFirstName?: string; // Nuovo campo
+  lawyerLastName?: string; // Nuovo campo
 }

@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { LawyerProfileComponent } from './lawyer/lawyer-profile/lawyer-profile.component'; // Importa il componente del profilo avvocato
+import { LawyersComponent } from './lawyer/lawyers/lawyers.component'; // Importa il componente lawyers
 
 const routes: Routes = [
   {
@@ -39,8 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'lawyers',
-    loadChildren: () =>
-      import('./lawyer/lawyer.module').then((m) => m.LawyerModule),
+    component: LawyersComponent,
   },
   {
     path: 'appointments',

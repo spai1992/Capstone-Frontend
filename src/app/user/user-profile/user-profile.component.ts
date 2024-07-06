@@ -35,7 +35,9 @@ export class UserProfileComponent implements OnInit {
   loadAppointments(): void {
     this.appointmentService.getAppointmentsByUser(this.user.id!).subscribe({
       next: (appointments) => {
-        this.appointments = appointments;
+        this.appointments = appointments.filter(
+          (appointment) => appointment.confirmed
+        );
       },
       error: (err) => {
         console.error('Failed to load appointments', err);
