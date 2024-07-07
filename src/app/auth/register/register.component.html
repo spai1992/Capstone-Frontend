@@ -1,103 +1,110 @@
-<div>
-  <h2>Register</h2>
+<!-- src/app/auth/register/register.component.html -->
+<div class="form">
+  <p class="title">Register</p>
+  <p class="message">Signup now and get full access to our app.</p>
   <form (ngSubmit)="register()" #registerForm="ngForm">
-    <div class="mb-3">
-      <label for="firstName" class="form-label">First Name</label>
+    <label>
       <input
         type="text"
         id="firstName"
         [(ngModel)]="user.firstName"
         name="firstName"
-        class="form-control"
+        class="input"
         required
         #firstName="ngModel"
+        placeholder=""
       />
+      <span>First Name</span>
       <div
         *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
         class="text-danger"
       >
         First name is required.
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="lastName" class="form-label">Last Name</label>
+    </label>
+    <label>
       <input
         type="text"
         id="lastName"
         [(ngModel)]="user.lastName"
         name="lastName"
-        class="form-control"
+        class="input"
         required
         #lastName="ngModel"
+        placeholder=""
       />
+      <span>Last Name</span>
       <div
         *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
         class="text-danger"
       >
         Last name is required.
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
+    </label>
+    <label>
       <input
         type="email"
         id="email"
         [(ngModel)]="user.email"
         name="email"
-        class="form-control"
+        class="input"
         required
         #email="ngModel"
+        placeholder=""
       />
+      <span>Email</span>
       <div
         *ngIf="email.invalid && (email.dirty || email.touched)"
         class="text-danger"
       >
         Valid email is required.
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
+    </label>
+    <label>
       <input
         type="password"
         id="password"
         [(ngModel)]="user.password"
         name="password"
-        class="form-control"
+        class="input"
         required
         #password="ngModel"
+        placeholder=""
       />
+      <span>Password</span>
       <div
         *ngIf="password.invalid && (password.dirty || password.touched)"
         class="text-danger"
       >
         Password is required.
       </div>
-    </div>
-    <div class="mb-3">
-      <label for="role" class="form-label">Role</label>
+    </label>
+    <label>
       <select
         id="role"
         [(ngModel)]="user.role"
         name="role"
-        class="form-select"
+        class="input"
         required
       >
         <option value="user">User</option>
         <option value="lawyer">Lawyer</option>
       </select>
-    </div>
+      <span>Role</span>
+    </label>
     <div *ngIf="user.role === 'lawyer'">
-      <div class="mb-3">
-        <label for="specialization" class="form-label">Specialization</label>
+      <label>
         <input
           type="text"
           id="specialization"
           [(ngModel)]="lawyer.specialization"
           name="specialization"
-          class="form-control"
+          class="input"
           required
           #specialization="ngModel"
+          placeholder=""
         />
+        <span>Specialization</span>
         <div
           *ngIf="
             specialization.invalid &&
@@ -107,17 +114,18 @@
         >
           Specialization is required.
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
+      </label>
+      <label>
         <textarea
           id="description"
           [(ngModel)]="lawyer.description"
           name="description"
-          class="form-control"
+          class="input"
           required
           #description="ngModel"
+          placeholder=""
         ></textarea>
+        <span>Description</span>
         <div
           *ngIf="
             description.invalid && (description.dirty || description.touched)
@@ -126,67 +134,66 @@
         >
           Description is required.
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="city" class="form-label">City</label>
+      </label>
+      <label>
         <input
           type="text"
           id="city"
           [(ngModel)]="lawyer.city"
           name="city"
-          class="form-control"
+          class="input"
           required
           #city="ngModel"
+          placeholder=""
         />
+        <span>City</span>
         <div
           *ngIf="city.invalid && (city.dirty || city.touched)"
           class="text-danger"
         >
           City is required.
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
+      </label>
+      <label>
         <input
           type="text"
           id="address"
           [(ngModel)]="lawyer.address"
           name="address"
-          class="form-control"
+          class="input"
           required
           #address="ngModel"
+          placeholder=""
         />
+        <span>Address</span>
         <div
           *ngIf="address.invalid && (address.dirty || address.touched)"
           class="text-danger"
         >
           Address is required.
         </div>
-      </div>
-      <div class="mb-3">
-        <label for="phone" class="form-label">Phone</label>
+      </label>
+      <label>
         <input
           type="text"
           id="phone"
           [(ngModel)]="lawyer.phone"
           name="phone"
-          class="form-control"
+          class="input"
           required
           #phone="ngModel"
+          placeholder=""
         />
+        <span>Phone</span>
         <div
           *ngIf="phone.invalid && (phone.dirty || phone.touched)"
           class="text-danger"
         >
           Phone number is required.
         </div>
-      </div>
+      </label>
     </div>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="registerForm.invalid"
-    >
+    <button type="submit" class="submit" [disabled]="registerForm.invalid">
       Register
     </button>
     <div *ngIf="errorMessage" class="alert alert-danger mt-3">

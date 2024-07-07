@@ -1,3 +1,4 @@
+<!-- src/app/navbar/navbar.component.html -->
 <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
   <div class="container-fluid">
     <div class="d-flex flex-grow-1 justify-content-between align-items-center">
@@ -42,31 +43,21 @@
 </nav>
 
 <ng-template #loginModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Login</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></button>
-  </div>
-  <div class="modal-body">
-    <app-login (closeModal)="modal.close()"></app-login>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-login (closeModal)="modal.close()"></app-login>
+      </div>
+    </div>
   </div>
 </ng-template>
 
 <ng-template #registerModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Register</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></button>
-  </div>
-  <div class="modal-body">
-    <app-register (closeModal)="modal.close()"></app-register>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-register (closeModal)="modal.close()"></app-register>
+      </div>
+    </div>
   </div>
 </ng-template>

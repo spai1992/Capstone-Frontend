@@ -1,3 +1,4 @@
+// src/app/auth/register/register.component.ts
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../authservice.service';
 import { Router } from '@angular/router';
