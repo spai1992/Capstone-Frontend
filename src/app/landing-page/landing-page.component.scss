@@ -1,6 +1,34 @@
-.jumbotron {
-  background-color: #f8f9fa;
-  padding: 2rem 1rem;
-  margin-bottom: 2rem;
-  border-radius: 0.3rem;
+/* src/app/landing-page/landing-page.component.scss */
+
+.custom-landing-page {
+  .lawtus-banner {
+    width: 100%;
+    max-width: 600px; /* Dimensione massima dell'immagine per mantenere le proporzioni */
+  }
+
+  .lawtus-people {
+    width: 100%;
+    max-width: 800px; /* Dimensione massima dell'immagine per mantenere le proporzioni */
+  }
+
+  .lead {
+    color: #27376f;
+    /* Aumenta la dimensione del font per una migliore leggibilità */
+  }
+
+  .lead1 {
+    font-family: "Rubrik ExtraLight Italic", sans-serif;
+    font-weight: normal;
+    font-size: 1.5rem;
+  }
+
+  .lead2 {
+    font-family: "Rubrik", sans-serif;
+    font-weight: normal;
+    font-size: 1.5rem;
+  }
+
+  .mt-3 {
+    margin-top: 0.5rem; /* Riduce ulteriormente lo spazio sopra il testo */
+  }
 }

@@ -1,0 +1,12 @@
+/* src/app/shared/footer/footer.component.scss */
+
+.custom-footer {
+  background-color: #27376f;
+  padding: 1rem 0;
+
+  .footer-text {
+    color: white;
+    font-family: "Rubrik", sans-serif;
+    font-weight: normal;
+  }
+}

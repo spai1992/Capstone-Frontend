@@ -1,9 +1,31 @@
-.navbar {
+/* src/app/navbar/navbar.component.scss */
+
+.custom-navbar {
+  background-color: #27376f;
+
+  .navbar-logo {
+    height: 50px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
   .nav-link {
+    color: white !important;
     margin-left: 15px;
     margin-right: 15px;
+
+    i {
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      color: #ccc !important;
+    }
   }
-  .btn-link {
-    text-decoration: none;
+
+  .avvocati-link {
+    font-family: "Rubrik", sans-serif;
+    font-weight: normal;
   }
 }
