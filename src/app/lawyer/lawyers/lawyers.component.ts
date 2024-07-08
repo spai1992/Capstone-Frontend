@@ -1,8 +1,9 @@
-// src/app/lawyer/lawyers/lawyers.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LawyerService } from '../lawyer.service';
 import { Lawyer } from '../../models/lawyer';
+import { LawyerDetailsComponent } from '../lawyer-details/lawyer-details.component';
+import { AppointmentModalComponent } from '../../shared/appointment-modal/appointment-modal.component';
 
 @Component({
   selector: 'app-lawyers',
@@ -14,7 +15,10 @@ export class LawyersComponent implements OnInit {
   searchCity: string = '';
   lawyers: Lawyer[] = [];
 
-  constructor(private lawyerService: LawyerService, private router: Router) {}
+  constructor(
+    private lawyerService: LawyerService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.searchLawyers();
@@ -34,6 +38,18 @@ export class LawyersComponent implements OnInit {
   }
 
   viewProfile(lawyerId: number): void {
-    this.router.navigate(['/lawyer/profile', lawyerId]);
+    const modalRef = this.modalService.open(LawyerDetailsComponent, {
+      windowClass: 'custom-modal-class',
+      size: 'lg',
+    });
+    modalRef.componentInstance.lawyerId = lawyerId;
+    modalRef.result.then(
+      () => {
+        // Closed with button click
+      },
+      () => {
+        // Dismissed
+      }
+    );
   }
 }

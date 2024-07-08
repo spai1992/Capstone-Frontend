@@ -1,29 +1,35 @@
-<div *ngIf="lawyer" class="d-flex justify-content-center mt-5">
-  <div class="card" style="width: 50%">
-    <div class="card-body">
-      <h5 class="card-title">{{ lawyer.firstName }} {{ lawyer.lastName }}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{ lawyer.specialization }}</h6>
-      <p class="card-text">{{ lawyer.description }}</p>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">City: {{ lawyer.city }}</li>
-        <li class="list-group-item">Address: {{ lawyer.address }}</li>
-        <li class="list-group-item">Phone: {{ lawyer.phone }}</li>
-      </ul>
-      <div *ngIf="authService.isLoggedIn(); else loginMessage">
-        <button
-          class="btn btn-primary mt-3"
-          (click)="openAppointmentModal(appointmentModalContent)"
-        >
-          Book Appointment
-        </button>
-      </div>
-      <ng-template #loginMessage>
-        <p class="text-muted mt-3">
-          Per poter prendere appuntamento effettua il login o registrati.
-        </p>
-      </ng-template>
-    </div>
+<div class="form">
+  <p class="title">{{ lawyer?.firstName }} {{ lawyer?.lastName }}</p>
+  <p class="message">{{ lawyer?.specialization }}</p>
+  <div class="form-group">
+    <label>Descrizione</label>
+    <textarea class="input" readonly>{{ lawyer?.description }}</textarea>
   </div>
+  <div class="form-group">
+    <label>Città</label>
+    <input type="text" class="input" value="{{ lawyer?.city }}" readonly />
+  </div>
+  <div class="form-group">
+    <label>Indirizzo</label>
+    <input type="text" class="input" value="{{ lawyer?.address }}" readonly />
+  </div>
+  <div class="form-group">
+    <label>Telefono</label>
+    <input type="text" class="input" value="{{ lawyer?.phone }}" readonly />
+  </div>
+  <div *ngIf="authService.isLoggedIn(); else loginMessage">
+    <button
+      class="btn btn-primary submit"
+      (click)="openAppointmentModal(appointmentModalContent)"
+    >
+      Prenota Appuntamento
+    </button>
+  </div>
+  <ng-template #loginMessage>
+    <p class="text-muted mt-3">
+      Per poter prendere appuntamento effettua il login o registrati.
+    </p>
+  </ng-template>
 </div>
 
 <ng-template #appointmentModalContent let-modal>

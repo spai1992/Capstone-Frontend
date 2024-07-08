@@ -1,9 +1,13 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { LawyerService } from '../lawyer.service';
 import { Lawyer } from '../../models/lawyer';
 import { AuthService } from '../../auth/authservice.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbModal,
+  NgbModalRef,
+  ModalDismissReasons,
+} from '@ng-bootstrap/ng-bootstrap';
+import { AppointmentModalComponent } from '../../shared/appointment-modal/appointment-modal.component';
 
 @Component({
   selector: 'app-lawyer-details',
@@ -11,43 +15,36 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./lawyer-details.component.scss'],
 })
 export class LawyerDetailsComponent implements OnInit {
+  @Input() lawyerId!: number;
   lawyer: Lawyer | null = null;
-  showModal: boolean = false;
   closeResult: string = '';
+  private modalRef: NgbModalRef | null = null;
 
   constructor(
-    private route: ActivatedRoute,
     private lawyerService: LawyerService,
     public authService: AuthService,
     private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
-    const lawyerId = this.route.snapshot.paramMap.get('id');
-    if (lawyerId) {
-      this.lawyerService.getLawyerById(+lawyerId).subscribe({
-        next: (lawyer) => (this.lawyer = lawyer),
-        error: (err) => console.error('Failed to load lawyer details', err),
-      });
-    }
+    this.loadLawyerDetails();
+  }
+
+  loadLawyerDetails(): void {
+    this.lawyerService.getLawyerById(this.lawyerId).subscribe({
+      next: (lawyer) => (this.lawyer = lawyer),
+      error: (err) => console.error('Failed to load lawyer details', err),
+    });
   }
 
   openAppointmentModal(content: TemplateRef<any>): void {
-    console.log('Opening appointment modal');
-    this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result.then(
-        (result) => {
-          this.closeResult = `Closed with: ${result}`;
-          this.showModal = true;
-          console.log('showModal:', this.showModal);
-        },
-        (reason) => {
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-          this.showModal = false;
-          console.log('showModal:', this.showModal);
-        }
-      );
+    if (this.modalRef) {
+      this.modalRef.close();
+    }
+    this.modalRef = this.modalService.open(AppointmentModalComponent, {
+      ariaLabelledBy: 'modal-basic-title',
+    });
+    this.modalRef.componentInstance.lawyer = this.lawyer;
   }
 
   private getDismissReason(reason: any): string {

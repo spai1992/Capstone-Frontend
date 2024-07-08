@@ -1,8 +1,108 @@
-.card {
-  margin: 0 auto;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Aumenta lo spazio tra gli elementi */
+  max-width: 500px; /* Riduci la larghezza massima */
+  margin: 0 auto; /* Centra il contenuto orizzontalmente */
+  padding: 20px; /* Aggiunge padding per lo spazio interno */
+  border-radius: 15px; /* Arrotonda gli angoli della modale */
+  background-color: white; /* Sfondo bianco */
 }
 
-.modal-body {
-  max-height: 70vh;
-  overflow-y: auto;
+.title {
+  font-size: 28px;
+  color: #27376f;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #27376f;
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: #27376f;
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+}
+
+.form-group label {
+  color: rgb(107, 107, 107);
+  font-size: 0.9em;
+  transition: 0.3s ease;
+}
+
+.form-group .input {
+  width: 100%;
+  padding: 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  margin-bottom: 10px; /* Aggiunge uno spazio sotto ogni input */
+  background-color: #ffffff;
+  font-family: "Rubrik", sans-serif; /* Cambia il font dell'input */
+  font-size: 1em;
+  font-style: italic; /* Cambia la dimensione del font dell'input */
+  color: #27376f; /* Cambia il colore del testo dell'input */
+}
+
+.form-group .input[readonly] {
+  background-color: #ffffff; /* Colore diverso per campi di sola lettura */
+}
+
+.submit {
+  border: none;
+  outline: none;
+  background-color: #27376f;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Aggiunge uno spazio sopra il bottone */
+}
+
+.submit:hover {
+  background-color: rgb(56, 90, 194);
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }

@@ -1,3 +1,4 @@
+/* src/app/lawyer/lawyers/lawyers.component.scss */
 .container {
   max-width: 1700px;
   margin: auto;
@@ -33,6 +34,7 @@ h2 {
   border-radius: 15px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizione */
+  cursor: pointer; /* Aggiungi il puntatore per indicare che è cliccabile */
 }
 
 .lawyer-card:hover {
