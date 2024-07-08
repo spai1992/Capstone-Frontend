@@ -1,0 +1,85 @@
+.container {
+  max-width: 1700px;
+  margin: auto;
+}
+
+h2 {
+  font-family: "Rubrik", sans-serif;
+  color: #27376f;
+}
+
+.form-control {
+  border: 1px solid #27376f;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* Aggiungi qui le regole per il placeholder */
+.form-control::placeholder {
+  color: #0f263a;
+  font-family: "Rubrik", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.searchbutton {
+  background-color: #27376f;
+  border-radius: 15px;
+  border: none;
+}
+
+.lawyer-card {
+  border: 1px solid #27376f;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizione */
+}
+
+.lawyer-card:hover {
+  transform: scale(1.05); /* Effetto di espansione */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi un'ombra per enfatizzare l'espansione */
+}
+
+.card-img {
+  width: 90%;
+  height: auto;
+  border-radius: 15px; /* Arrotonda gli angoli dell'immagine */
+  object-fit: cover;
+  margin: 10px; /* Aggiunge margine per centrare meglio l'immagine */
+  margin-left: 15px; /* Aggiunge margine a sinistra */
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #27376f;
+  font-family: "Rubrik", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.card-text {
+  color: #6c757d;
+  font-family: "Rubrik", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.profile-btn {
+  background-color: #27376f;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 20px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+  font-family: "Rubrik", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.profile-btn:hover {
+  background-color: #1b255f;
+}
