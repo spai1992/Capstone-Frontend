@@ -18,10 +18,7 @@
     <input type="text" class="input" value="{{ lawyer?.phone }}" readonly />
   </div>
   <div *ngIf="authService.isLoggedIn(); else loginMessage">
-    <button
-      class="btn btn-primary submit"
-      (click)="openAppointmentModal(appointmentModalContent)"
-    >
+    <button class="btn btn-primary submit" (click)="openAppointmentModal()">
       Prenota Appuntamento
     </button>
   </div>
@@ -31,10 +28,3 @@
     </p>
   </ng-template>
 </div>
-
-<ng-template #appointmentModalContent let-modal>
-  <app-appointment-modal
-    [lawyer]="lawyer"
-    (closeModalEvent)="modal.close()"
-  ></app-appointment-modal>
-</ng-template>

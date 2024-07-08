@@ -37,7 +37,7 @@ export class LawyerDetailsComponent implements OnInit {
     });
   }
 
-  openAppointmentModal(content: TemplateRef<any>): void {
+  openAppointmentModal(): void {
     if (this.modalRef) {
       this.modalRef.close();
     }
@@ -45,6 +45,10 @@ export class LawyerDetailsComponent implements OnInit {
       ariaLabelledBy: 'modal-basic-title',
     });
     this.modalRef.componentInstance.lawyer = this.lawyer;
+
+    this.modalRef.componentInstance.closeModalEvent.subscribe(() => {
+      this.modalRef?.close();
+    });
   }
 
   private getDismissReason(reason: any): string {
