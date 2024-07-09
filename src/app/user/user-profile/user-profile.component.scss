@@ -1,50 +1,233 @@
-/* src/app/user/user-profile/user-profile.component.scss */
-.profile-pic-container {
-  position: relative;
-  display: flex;
-  align-items: center;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .profile-pic-wrapper {
-  position: relative;
-  width: 150px;
-  height: 150px;
+  height: 300px; /* Set a fixed height to match the details card */
+  border-radius: 15px;
+  border: 1px solid #27376f;
+  overflow: hidden;
 }
 
-.profile-pic,
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .profile-pic-placeholder {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  border: 2px solid black;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  text-align: center;
-}
-
-.profile-pic-placeholder {
-  font-size: 14px;
   color: #888;
+  background-color: #f0f0f0;
 }
 
-.btn-upload-pic {
+.user-details-card {
+  border: 1px solid #27376f;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 300px; /* Fixed height to match the image */
+}
+
+.user-details {
+  margin-top: 20px; /* Add margin to separate from the title */
+}
+
+h2 {
+  font-family: "Rubrik", sans-serif;
+  color: #27376f;
+}
+
+.card-body p {
+  color: #27376f;
+  font-family: "Rubrik", sans-serif;
+}
+
+.user-actions {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: white;
-  border: 2px solid black;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 18px;
+  bottom: 20px; /* Position closer to the bottom */
+  right: 20px; /* Position closer to the right */
+}
+
+.btn-primary {
+  background-color: #27376f;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px; /* Smaller padding for smaller buttons */
+  font-size: 14px; /* Smaller font size */
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1b255f;
 }
 
 .file-upload-input {
   display: none;
+}
+
+.alert-danger {
+  font-family: "Rubrik", sans-serif;
+}
+
+.appointments-title {
+  font-family: "Rubrik", sans-serif;
+  color: #27376f;
+  margin-bottom: 20px;
+}
+
+.appointment-card {
+  border: 1px solid #27376f;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizione */
+  cursor: pointer; /* Aggiungi il puntatore per indicare che è cliccabile */
+}
+
+.appointment-card:hover {
+  transform: scale(1.05); /* Effetto di espansione */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi un'ombra per enfatizzare l'espansione */
+}
+
+.appointment-card .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appointment-card .details {
+  color: #27376f;
+  font-family: "Rubrik", sans-serif;
+}
+
+.appointment-card .details strong {
+  font-weight: bold;
+}
+
+/* Stile per la modale di modifica del profilo utente */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Aumenta lo spazio tra gli elementi */
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px; /* Aggiungi padding per lo spazio interno */
+  border-radius: 15px; /* Arrotonda gli angoli della modale */
+  background-color: white; /* Sfondo bianco */
+}
+
+.title {
+  font-size: 28px;
+  color: #27376f;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  margin-bottom: 10px; /* Aggiunge uno spazio sotto il titolo */
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #27376f;
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: #27376f;
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+  margin-bottom: 20px; /* Spazio tra il messaggio e il primo input */
+}
+
+.form label {
+  position: relative;
+  width: 100%;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  margin-bottom: 20px; /* Aggiunge uno spazio sotto ogni input */
+}
+
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 10px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,
+.form label .input:valid + span {
+  top: -10px;
+  font-size: 0.8em;
+  font-weight: 600;
+  background-color: #fff;
+  padding: 0 5px;
+}
+
+.form label .input:valid + span {
+  color: green;
+}
+
+.submit {
+  border: none;
+  outline: none;
+  background-color: #27376f;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.submit:hover {
+  background-color: rgb(56, 90, 194);
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }

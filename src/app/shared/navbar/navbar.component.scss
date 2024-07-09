@@ -1,7 +1,9 @@
-/* src/app/navbar/navbar.component.scss */
-
 .custom-navbar {
   background-color: #27376f;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1020;
 
   .navbar-logo {
     height: 50px;

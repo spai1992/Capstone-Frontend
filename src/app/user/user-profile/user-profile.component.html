@@ -1,160 +1,164 @@
-<!-- src/app/user/user-profile/user-profile.component.html -->
 <div class="container mt-5">
-  <div class="card">
-    <div class="card-body d-flex justify-content-between align-items-center">
-      <div>
-        <h2>User Profile</h2>
-        <div>
-          <p><strong>First Name:</strong> {{ user.firstName }}</p>
-          <p><strong>Last Name:</strong> {{ user.lastName }}</p>
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <button class="btn btn-primary" (click)="openEditModal()">
-            Edit Profile
-          </button>
+  <div class="row justify-content-center align-items-start">
+    <div class="col-lg-3 col-md-4 mb-4">
+      <div class="profile-pic-wrapper">
+        <img
+          *ngIf="user.profilePicture"
+          [src]="user.profilePicture"
+          alt="Profile Picture"
+          class="profile-pic"
+        />
+        <div *ngIf="!user.profilePicture" class="profile-pic-placeholder">
+          Profile Picture
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9 col-md-8 mb-4">
+      <div class="card user-details-card">
+        <div class="card-body">
+          <h2 class="mb-5">Profilo Utente:</h2>
+          <div class="user-details">
+            <p class="details"><strong>Nome:</strong> {{ user.firstName }}</p>
+            <p class="details"><strong>Cognome:</strong> {{ user.lastName }}</p>
+            <p class="details"><strong>Email:</strong> {{ user.email }}</p>
+          </div>
+          <div class="d-flex justify-content-end user-actions">
+            <button class="btn btn-primary me-2" (click)="openEditModal()">
+              Modifica Profilo
+            </button>
+            <label for="file-upload" class="btn btn-primary">
+              Cambia Foto
+            </label>
+            <input
+              id="file-upload"
+              type="file"
+              (change)="onFileSelected($event)"
+              class="file-upload-input"
+            />
+          </div>
         </div>
         <div *ngIf="errorMessage" class="alert alert-danger mt-3">
           {{ errorMessage }}
-        </div>
-      </div>
-      <div class="profile-pic-container">
-        <div class="profile-pic-wrapper">
-          <img
-            *ngIf="user.profilePicture"
-            [src]="user.profilePicture"
-            alt="Profile Picture"
-            class="profile-pic"
-          />
-          <div *ngIf="!user.profilePicture" class="profile-pic-placeholder">
-            Profile Picture
-          </div>
-          <label for="file-upload" class="btn btn-upload-pic">
-            <i class="bi bi-plus"></i>
-          </label>
-          <input
-            id="file-upload"
-            type="file"
-            (change)="onFileSelected($event)"
-            class="file-upload-input"
-          />
         </div>
       </div>
     </div>
   </div>
 
   <!-- Section for appointments -->
-  <div class="card mt-4">
-    <div class="card-body">
-      <h3>Your Appointments</h3>
-      <div *ngIf="appointments.length === 0">No appointments found.</div>
-      <ul *ngIf="appointments.length > 0" class="list-group">
-        <li *ngFor="let appointment of appointments" class="list-group-item">
-          <p><strong>Date:</strong> {{ appointment.appointmentDate }}</p>
-          <p><strong>End Date:</strong> {{ appointment.endDate }}</p>
-          <p><strong>Description:</strong> {{ appointment.description }}</p>
-          <p>
-            <strong>Lawyer:</strong> {{ appointment.lawyerFirstName }}
+  <div class="mt-4">
+    <h3 class="appointments-title text-center">I Tuoi Appuntamenti:</h3>
+    <div *ngIf="appointments.length === 0" class="text-center">
+      Nessun appuntamento trovato.
+    </div>
+    <div
+      *ngFor="let appointment of appointments"
+      class="card mb-3 appointment-card"
+    >
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+          <p class="details">
+            <strong>Data:</strong> {{ appointment.appointmentDate }}
+          </p>
+          <p class="details">
+            <strong>Avvocato:</strong> {{ appointment.lawyerFirstName }}
             {{ appointment.lawyerLastName }}
           </p>
-        </li>
-      </ul>
+        </div>
+        <p class="details">
+          <strong>Descrizione:</strong> {{ appointment.description }}
+        </p>
+      </div>
     </div>
   </div>
 
   <!-- Modal for editing profile -->
   <ng-template #editModal let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Edit Profile</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
-    </div>
-    <div class="modal-body">
+    <div class="form">
+      <p class="title">Modifica Profilo</p>
       <form (ngSubmit)="updateProfile()" #userForm="ngForm">
-        <div class="mb-3">
-          <label for="firstName" class="form-label">First Name</label>
+        <label>
           <input
             type="text"
             id="firstName"
             [(ngModel)]="user.firstName"
             name="firstName"
-            class="form-control"
+            class="input"
             required
             #firstName="ngModel"
+            placeholder=""
           />
+          <span>Nome</span>
           <div
             *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
             class="text-danger"
           >
-            First name is required.
+            Nome è richiesto.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="lastName" class="form-label">Last Name</label>
+        </label>
+        <label>
           <input
             type="text"
             id="lastName"
             [(ngModel)]="user.lastName"
             name="lastName"
-            class="form-control"
+            class="input"
             required
             #lastName="ngModel"
+            placeholder=""
           />
+          <span>Cognome</span>
           <div
             *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
             class="text-danger"
           >
-            Last name is required.
+            Cognome è richiesto.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+        </label>
+        <label>
           <input
             type="email"
             id="email"
             [(ngModel)]="user.email"
             name="email"
-            class="form-control"
+            class="input"
             required
             #email="ngModel"
+            placeholder=""
           />
+          <span>Email</span>
           <div
             *ngIf="email.invalid && (email.dirty || email.touched)"
             class="text-danger"
           >
-            Valid email is required.
+            Email valida è richiesta.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
+        </label>
+        <label>
           <input
             type="password"
             id="password"
             [(ngModel)]="user.password"
             name="password"
-            class="form-control"
+            class="input"
             required
             #password="ngModel"
+            placeholder=""
           />
+          <span>Password</span>
           <div
             *ngIf="password.invalid && (password.dirty || password.touched)"
             class="text-danger"
           >
-            Password is required.
+            Password è richiesta.
           </div>
+        </label>
+        <button type="submit" class="submit" [disabled]="userForm.invalid">
+          Salva Modifiche
+        </button>
+
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+          {{ errorMessage }}
         </div>
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="userForm.invalid"
-        >
-          Save Changes
-        </button>
-        <button type="button" class="btn btn-secondary" (click)="modal.close()">
-          Cancel
-        </button>
       </form>
     </div>
   </ng-template>

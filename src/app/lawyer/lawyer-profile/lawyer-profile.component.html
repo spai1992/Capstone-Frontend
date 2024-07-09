@@ -1,181 +1,209 @@
 <div class="container mt-5">
-  <div class="card">
-    <div class="card-body">
-      <h2>Profilo Avvocato</h2>
-      <div class="profile-pic-container">
-        <div class="profile-pic-wrapper">
-          <img
-            *ngIf="lawyer.profilePicture"
-            [src]="lawyer.profilePicture"
-            alt="Profile Picture"
-            class="profile-pic"
-          />
-          <div *ngIf="!lawyer.profilePicture" class="profile-pic-placeholder">
-            No Image
-          </div>
-          <button class="btn-upload-pic" (click)="triggerFileInput()">+</button>
-          <input
-            type="file"
-            #fileInput
-            class="file-upload-input"
-            (change)="onFileSelected($event)"
-          />
+  <div class="row justify-content-center align-items-start">
+    <div class="col-lg-3 col-md-4 mb-4">
+      <div class="profile-pic-wrapper">
+        <img
+          *ngIf="lawyer.profilePicture"
+          [src]="lawyer.profilePicture"
+          alt="Profile Picture"
+          class="profile-pic"
+        />
+        <div *ngIf="!lawyer.profilePicture" class="profile-pic-placeholder">
+          No Image
         </div>
       </div>
-      <div>
-        <p><strong>Nome:</strong> {{ lawyer.firstName }}</p>
-        <p><strong>Cognome:</strong> {{ lawyer.lastName }}</p>
-        <p><strong>Email:</strong> {{ lawyer.email }}</p>
-        <p><strong>Telefono:</strong> {{ lawyer.phone }}</p>
-        <p><strong>Indirizzo:</strong> {{ lawyer.address }}</p>
-        <p><strong>Specializzazione:</strong> {{ lawyer.specialization }}</p>
-        <p><strong>Descrizione:</strong> {{ lawyer.description }}</p>
-        <p><strong>Città:</strong> {{ lawyer.city }}</p>
-        <button class="btn btn-primary mt-3" (click)="openEditModal()">
-          Modifica Profilo
-        </button>
-      </div>
-      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
-        {{ errorMessage }}
+    </div>
+    <div class="col-lg-9 col-md-8 mb-4">
+      <div class="card user-details-card">
+        <div class="card-body">
+          <h2 class="mb-5">Profilo Avvocato:</h2>
+          <div class="row user-details">
+            <div class="col-sm-6">
+              <p class="details">
+                <strong>Nome:</strong> {{ lawyer.firstName }}
+              </p>
+              <p class="details">
+                <strong>Cognome:</strong> {{ lawyer.lastName }}
+              </p>
+              <p class="details"><strong>Email:</strong> {{ lawyer.email }}</p>
+              <p class="details">
+                <strong>Telefono:</strong> {{ lawyer.phone }}
+              </p>
+              <p class="details">
+                <strong>Indirizzo:</strong> {{ lawyer.address }}
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <p class="details"><strong>Città:</strong> {{ lawyer.city }}</p>
+              <p class="details">
+                <strong>Descrizione:</strong> {{ lawyer.description }}
+              </p>
+              <p class="details">
+                <strong>Specializzazione:</strong> {{ lawyer.specialization }}
+              </p>
+              <div class="user-actions">
+                <button class="btn btn-primary me-2" (click)="openEditModal()">
+                  Modifica Profilo
+                </button>
+                <label for="file-upload" class="btn btn-primary">
+                  Cambia Foto
+                </label>
+                <input
+                  id="file-upload"
+                  type="file"
+                  (change)="onFileSelected($event)"
+                  class="file-upload-input"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+          {{ errorMessage }}
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Section for appointments -->
-  <div class="card mt-4">
-    <div class="card-body">
-      <h3>I Tuoi Appuntamenti</h3>
-      <div *ngIf="appointments.length === 0">Nessun appuntamento trovato.</div>
-      <ul *ngIf="appointments.length > 0" class="list-group">
-        <li *ngFor="let appointment of appointments" class="list-group-item">
-          <p><strong>Data:</strong> {{ appointment.appointmentDate }}</p>
-          <p><strong>Fine Data:</strong> {{ appointment.endDate }}</p>
-          <p><strong>Descrizione:</strong> {{ appointment.description }}</p>
-          <p>
+  <div class="mt-4">
+    <h3 class="appointments-title text-center">I Tuoi Appuntamenti:</h3>
+    <div *ngIf="appointments.length === 0" class="text-center">
+      Nessun appuntamento trovato.
+    </div>
+    <div
+      *ngFor="let appointment of appointments"
+      class="card mb-3 appointment-card"
+    >
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+          <p class="details">
+            <strong>Data:</strong> {{ appointment.appointmentDate }}
+          </p>
+          <p class="details">
             <strong>Cliente:</strong> {{ appointment.userFirstName }}
             {{ appointment.userLastName }}
           </p>
-        </li>
-      </ul>
+        </div>
+        <p class="details">
+          <strong>Descrizione:</strong> {{ appointment.description }}
+        </p>
+      </div>
     </div>
   </div>
 
   <!-- Modal for editing profile -->
   <ng-template #editModal let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Modifica Profilo</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
-    </div>
-    <div class="modal-body">
+    <div class="form">
+      <p class="title">Modifica Profilo</p>
       <form (ngSubmit)="updateProfile()" #lawyerForm="ngForm">
-        <div class="mb-3">
-          <label for="firstName" class="form-label">Nome</label>
+        <label>
           <input
             type="text"
             id="firstName"
             [(ngModel)]="lawyer.firstName"
             name="firstName"
-            class="form-control"
+            class="input"
             required
             #firstName="ngModel"
+            placeholder=""
           />
+          <span>Nome</span>
           <div
             *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
             class="text-danger"
           >
             Nome è richiesto.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="lastName" class="form-label">Cognome</label>
+        </label>
+        <label>
           <input
             type="text"
             id="lastName"
             [(ngModel)]="lawyer.lastName"
             name="lastName"
-            class="form-control"
+            class="input"
             required
             #lastName="ngModel"
+            placeholder=""
           />
+          <span>Cognome</span>
           <div
             *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
             class="text-danger"
           >
             Cognome è richiesto.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+        </label>
+        <label>
           <input
             type="email"
             id="email"
             [(ngModel)]="lawyer.email"
             name="email"
-            class="form-control"
+            class="input"
             required
             #email="ngModel"
+            placeholder=""
           />
+          <span>Email</span>
           <div
             *ngIf="email.invalid && (email.dirty || email.touched)"
             class="text-danger"
           >
             Email valida è richiesta.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="phone" class="form-label">Telefono</label>
+        </label>
+        <label>
           <input
             type="text"
             id="phone"
             [(ngModel)]="lawyer.phone"
             name="phone"
-            class="form-control"
+            class="input"
             required
             #phone="ngModel"
+            placeholder=""
           />
+          <span>Telefono</span>
           <div
             *ngIf="phone.invalid && (phone.dirty || phone.touched)"
             class="text-danger"
           >
             Telefono è richiesto.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="address" class="form-label">Indirizzo</label>
+        </label>
+        <label>
           <input
             type="text"
             id="address"
             [(ngModel)]="lawyer.address"
             name="address"
-            class="form-control"
+            class="input"
             required
             #address="ngModel"
+            placeholder=""
           />
+          <span>Indirizzo</span>
           <div
             *ngIf="address.invalid && (address.dirty || address.touched)"
             class="text-danger"
           >
             Indirizzo è richiesto.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="specialization" class="form-label"
-            >Specializzazione</label
-          >
+        </label>
+        <label>
           <input
             type="text"
             id="specialization"
             [(ngModel)]="lawyer.specialization"
             name="specialization"
-            class="form-control"
+            class="input"
             required
             #specialization="ngModel"
+            placeholder=""
           />
+          <span>Specializzazione</span>
           <div
             *ngIf="
               specialization.invalid &&
@@ -185,18 +213,19 @@
           >
             Specializzazione è richiesta.
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="description" class="form-label">Descrizione</label>
+        </label>
+        <label>
           <textarea
             id="description"
             [(ngModel)]="lawyer.description"
             name="description"
-            class="form-control"
+            class="input"
             rows="5"
             required
             #description="ngModel"
+            placeholder=""
           ></textarea>
+          <span>Descrizione</span>
           <div
             *ngIf="
               description.invalid && (description.dirty || description.touched)
@@ -205,17 +234,14 @@
           >
             Descrizione è richiesta.
           </div>
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="lawyerForm.invalid"
-        >
+        </label>
+        <button type="submit" class="submit" [disabled]="lawyerForm.invalid">
           Salva Modifiche
         </button>
-        <button type="button" class="btn btn-secondary" (click)="modal.close()">
-          Cancella
-        </button>
+
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+          {{ errorMessage }}
+        </div>
       </form>
     </div>
   </ng-template>
