@@ -5,12 +5,16 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './shared/shared.module'; // Percorso corretto per il modulo condiviso
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Aggiungi il modulo ng-bootstrap
-import { LandingPageModule } from './landing-page/landing-page.module'; // Importa il modulo della landing page
+import { SharedModule } from './shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LandingPageModule } from './landing-page/landing-page.module';
+import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component'; // Importa il componente qui
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    ConfirmAppointmentComponent, // Dichiara il componente qui
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,8 +22,8 @@ import { LandingPageModule } from './landing-page/landing-page.module'; // Impor
     FormsModule,
     AuthModule,
     SharedModule,
-    NgbModule, // Aggiungi il modulo ng-bootstrap
-    LandingPageModule, // Aggiungi il modulo della landing page
+    NgbModule,
+    LandingPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

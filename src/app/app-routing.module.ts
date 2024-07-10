@@ -5,8 +5,9 @@ import { GuestGuard } from './auth/guest.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
-import { LawyerProfileComponent } from './lawyer/lawyer-profile/lawyer-profile.component'; // Importa il componente del profilo avvocato
-import { LawyersComponent } from './lawyer/lawyers/lawyers.component'; // Importa il componente lawyers
+import { LawyerProfileComponent } from './lawyer/lawyer-profile/lawyer-profile.component';
+import { LawyersComponent } from './lawyer/lawyers/lawyers.component';
+import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component'; // Importa il componente qui
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'lawyer-profile', // Aggiungi questa rotta per il profilo avvocato
+    path: 'lawyer-profile',
     component: LawyerProfileComponent,
     canActivate: [AuthGuard],
   },
@@ -49,6 +50,7 @@ const routes: Routes = [
         (m) => m.AppointmentModule
       ),
   },
+  { path: 'confirmed-appointment', component: ConfirmAppointmentComponent }, // Aggiungi questa rotta
   { path: '**', redirectTo: '' },
 ];
 
