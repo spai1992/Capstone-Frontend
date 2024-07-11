@@ -1,5 +1,6 @@
+// src/app/landing-page/landing-page.component.ts
+
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -11,7 +12,7 @@ export class LandingPageComponent {
   @ViewChild('loginModal') loginModal: any;
   @ViewChild('registerModal') registerModal: any;
 
-  constructor(private router: Router, private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal) {}
 
   openLoginModal(): void {
     this.modalService.open(this.loginModal);
@@ -19,5 +20,9 @@ export class LandingPageComponent {
 
   openRegisterModal(): void {
     this.modalService.open(this.registerModal);
+  }
+
+  closeModal(): void {
+    this.modalService.dismissAll();
   }
 }

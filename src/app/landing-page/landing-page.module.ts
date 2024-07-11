@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page.component';
+import { AuthModule } from '../auth/auth.module';
+import { SharedModule } from '../shared/shared.module';
+import { LandingPageRoutingModule } from './landing-page-routing.module'; // Importa il modulo di routing della landing page
 
 @NgModule({
   declarations: [LandingPageComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: '', component: LandingPageComponent }]),
+    LandingPageRoutingModule, // Aggiungi questa riga
+    AuthModule,
+    SharedModule, // Aggiungi questa riga
   ],
 })
 export class LandingPageModule {}

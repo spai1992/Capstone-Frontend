@@ -1,4 +1,3 @@
-/* src/app/lawyer/lawyers/lawyers.component.scss */
 .container {
   max-width: 1700px;
   margin: auto;
@@ -13,9 +12,9 @@ h2 {
   border: 1px solid #27376f;
   border-radius: 15px;
   overflow: hidden;
+  height: 45px;
 }
 
-/* Aggiungi qui le regole per il placeholder */
 .form-control::placeholder {
   color: #0f263a;
   font-family: "Rubrik", sans-serif;
@@ -24,31 +23,85 @@ h2 {
 }
 
 .searchbutton {
-  background-color: #27376f;
+  background-color: transparent;
   border-radius: 15px;
-  border: none;
+  border: 1px solid #27376f;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 200;
+  font-size: 17px;
+  font-family: "Rubrik", sans-serif;
+  text-transform: uppercase;
+  color: #27376f;
+  z-index: 1;
+  height: 45px;
+  padding: 0 1.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.searchbutton::before,
+.searchbutton::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: #27376f;
+  transition: 1s ease;
+}
+
+.searchbutton::before {
+  top: -1em;
+  left: -1em;
+}
+
+.searchbutton::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+}
+
+.searchbutton:hover::before,
+.searchbutton:hover::after {
+  height: 410px;
+  width: 410px;
+}
+
+.searchbutton:hover {
+  color: white;
+}
+
+.searchbutton:active {
+  filter: brightness(0.8);
 }
 
 .lawyer-card {
   border: 1px solid #27376f;
   border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizione */
-  cursor: pointer; /* Aggiungi il puntatore per indicare che è cliccabile */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .lawyer-card:hover {
-  transform: scale(1.05); /* Effetto di espansione */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi un'ombra per enfatizzare l'espansione */
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card-img {
   width: 90%;
   height: auto;
-  border-radius: 15px; /* Arrotonda gli angoli dell'immagine */
+  border-radius: 15px;
   object-fit: cover;
-  margin: 10px; /* Aggiunge margine per centrare meglio l'immagine */
-  margin-left: 15px; /* Aggiunge margine a sinistra */
+  margin: 10px;
+  margin-left: 15px;
 }
 
 .card-body {

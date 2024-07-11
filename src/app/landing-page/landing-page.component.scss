@@ -1,19 +1,16 @@
-/* src/app/landing-page/landing-page.component.scss */
-
 .custom-landing-page {
   .lawtus-banner {
     width: 100%;
-    max-width: 600px; /* Dimensione massima dell'immagine per mantenere le proporzioni */
+    max-width: 600px;
   }
 
   .lawtus-people {
     width: 100%;
-    max-width: 800px; /* Dimensione massima dell'immagine per mantenere le proporzioni */
+    max-width: 800px;
   }
 
   .lead {
     color: #27376f;
-    /* Aumenta la dimensione del font per una migliore leggibilità */
   }
 
   .lead1 {
@@ -29,7 +26,94 @@
   }
 
   .mt-3 {
-    margin-top: 0.5rem; /* Riduce ulteriormente lo spazio sopra il testo */
+    margin-top: 0.5rem;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
   }
 }
-/* src/styles.scss o src/app/navbar/navbar.component.scss */
+
+.searchbutton {
+  background-color: transparent;
+  border-radius: 15px;
+  border: 1px solid #27376f;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s;
+  font-weight: 200;
+  font-size: 17px;
+  font-family: "Rubrik", sans-serif;
+  text-transform: uppercase;
+  color: #27376f;
+  z-index: 1;
+  height: 45px;
+  padding: 0 1.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchbutton::before,
+.searchbutton::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: #27376f;
+  transition: 1s ease;
+}
+
+.searchbutton::before {
+  top: -1em;
+  left: -1em;
+}
+
+.searchbutton::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+}
+
+.searchbutton:hover::before,
+.searchbutton:hover::after {
+  height: 410px;
+  width: 410px;
+}
+
+.searchbutton:hover {
+  color: white;
+}
+
+.searchbutton:active {
+  filter: brightness(0.8);
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  padding: 20px 20px 40px 20px;
+  border-radius: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.submit {
+  margin-bottom: 20px;
+}

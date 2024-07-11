@@ -7,7 +7,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { LawyerProfileComponent } from './lawyer/lawyer-profile/lawyer-profile.component';
 import { LawyersComponent } from './lawyer/lawyers/lawyers.component';
-import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component'; // Importa il componente qui
+import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component';
 
 const routes: Routes = [
   {
@@ -50,7 +50,7 @@ const routes: Routes = [
         (m) => m.AppointmentModule
       ),
   },
-  { path: 'confirmed-appointment', component: ConfirmAppointmentComponent }, // Aggiungi questa rotta
+  { path: 'confirmed-appointment', component: ConfirmAppointmentComponent },
   { path: '**', redirectTo: '' },
 ];
 
