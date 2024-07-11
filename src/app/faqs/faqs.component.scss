@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Aumenta lo spazio tra gli elementi */
+  max-width: 800px; /* Dimensione massima della pagina per mantenere le proporzioni */
+  margin: 0 auto; /* Centra il contenuto orizzontalmente */
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-title {
+  font-size: 28px;
+  color: #27376f;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 20px; /* Aggiunge uno spazio sotto il titolo */
+  text-align: center;
+}
+
+.main-title::before,
+.main-title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: -30px; /* Sposta il pallino a sinistra del testo */
+  background-color: #27376f;
+}
+
+.main-title::before {
+  width: 18px;
+  height: 18px;
+  background-color: #27376f;
+}
+
+.main-title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.accordion-item {
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  margin-bottom: 20px; /* Aggiunge uno spazio sotto ogni accordion */
+}
+
+.accordion-header .accordion-button {
+  font-size: 18px;
+  color: #27376f;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  border-radius: 10px 10px 0 0;
+  transition: background-color 0.3s ease;
+  outline: none;
+  box-shadow: none;
+}
+
+.accordion-header .accordion-button:not(.collapsed) {
+  background-color: #27376f;
+  color: #fff;
+}
+
+.accordion-header .accordion-button:not(.collapsed)::after {
+  filter: brightness(0) invert(1);
+}
+
+.accordion-body {
+  font-size: 16px;
+  color: #565656;
+  padding: 15px;
+  background-color: #fff;
+  border-top: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 0 0 10px 10px;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}

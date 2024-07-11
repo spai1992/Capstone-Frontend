@@ -1,4 +1,3 @@
-// src/app/navbar/navbar.component.ts
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/authservice.service';
@@ -40,6 +39,7 @@ export class NavbarComponent implements OnInit {
 
   navigateToProfile(): void {
     this.updateProfileLink();
+    console.log('Navigating to:', this.profileLink); // Debugging statement
     this.router.navigate([this.profileLink]);
   }
 
@@ -50,5 +50,6 @@ export class NavbarComponent implements OnInit {
     } else {
       this.profileLink = '/profile';
     }
+    console.log('Profile link updated to:', this.profileLink); // Debugging statement
   }
 }

@@ -62,7 +62,9 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.isLoggedIn();
+    const isAuthenticated = this.isLoggedIn();
+    console.log('AuthService: isAuthenticated =', isAuthenticated); // Debug
+    return isAuthenticated;
   }
 
   isLawyer(): boolean {

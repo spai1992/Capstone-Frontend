@@ -50,7 +50,17 @@ const routes: Routes = [
         (m) => m.AppointmentModule
       ),
   },
+
+  {
+    path: 'faqs',
+    loadChildren: () => import('./faqs/faqs.module').then((m) => m.FaqsModule),
+  },
+
   { path: 'confirmed-appointment', component: ConfirmAppointmentComponent },
+  {
+    path: 'faqs',
+    loadChildren: () => import('./faqs/faqs.module').then((m) => m.FaqsModule),
+  },
   { path: '**', redirectTo: '' },
 ];
 

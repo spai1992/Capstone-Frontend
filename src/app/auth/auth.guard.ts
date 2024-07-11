@@ -23,10 +23,14 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    console.log('AuthGuard: Checking authentication status'); // Debug
     const isAuthenticated = this.authService.isAuthenticated();
+    console.log('AuthGuard: isAuthenticated =', isAuthenticated); // Debug
     if (isAuthenticated) {
+      console.log('AuthGuard: User is authenticated, access granted'); // Debug
       return true;
     } else {
+      console.log('AuthGuard: User is not authenticated, redirecting to login'); // Debug
       this.router.navigate(['/login']);
       return false;
     }
