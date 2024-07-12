@@ -44,10 +44,10 @@ mvn spring-boot:run
 ```
 
 ## 📦 Configure PostgreSQL
-Create a database named backend and configure your application.properties file in the backend with your PostgreSQL credentials.
+Create a database named lawtus and configure your application.properties file in the backend with your PostgreSQL credentials.
 
 ```py
-spring.datasource.url=jdbc:postgresql://localhost:5432/tuxdatabase
+spring.datasource.url=jdbc:postgresql://localhost:5432/lawtus
 spring.datasource.username=your_db_username
 spring.datasource.password=your_db_password
 spring.jpa.hibernate.ddl-auto=update
