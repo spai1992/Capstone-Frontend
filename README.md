@@ -53,6 +53,15 @@ spring.datasource.password=your_db_password
 spring.jpa.hibernate.ddl-auto=update
 ```
 
+## Swagger API Documentation
+
+This project uses Swagger to provide interactive API documentation.
+
+### Accessing Swagger UI
+
+After running the application, you can access the Swagger UI at the following URL:
+
+http://localhost:8080/swagger-ui.html
 
 ## 🚀 Contributing
 Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
