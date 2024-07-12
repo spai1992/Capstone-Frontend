@@ -1,27 +1,61 @@
 # Lawtus
+Lawtus is a comprehensive web platform designed to connect lawyers and users. Users can register, search for lawyers by description or city, view lawyer details, and request appointments. Lawyers receive appointment request notifications via email and can confirm appointments through a link. Both users and lawyers can manage their personal data and appointments through a personal dashboard.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
+#### The platform utilizes Angular for frontend development and Spring Boot for the backend, with PostgreSQL for data persistence.
 
-## Development server
+## 🌟 Features
+- User and lawyer registration and login
+- Viewing and filtering registered lawyers
+- Requesting and managing appointments
+- Email notifications for appointment requests
+- Dashboard for managing personal data and appointments
+- Complete CRUD operations for users and lawyers
+- Responsive design
+- RESTful API endpoints
+  
+## ⌛ Prerequisites
+- Node.js and npm
+- Angular CLI
+- Java 17 or higher (for backend)
+- Maven 3.6.0 or higher (for backend)
+- PostgreSQL
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## 📄 Clone the Repository
+For the Front-end:
+- git clone https://github.com/spai1992/Capstone-Frontend.git
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+For the Back-end:
+- git clone https://github.com/spai1992/Capstone-Backend.git
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🛠️ Install Dependencies
+To install the necessary dependencies for the Angular frontend, run:
 
-## Running unit tests
+```py
+npm install
+ng s
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+For the backend run:
+```py
+mvn clean install
+mvn spring-boot:run
+```
 
-## Running end-to-end tests
+## 📦 Configure PostgreSQL
+Create a database named backend and configure your application.properties file in the backend with your PostgreSQL credentials.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```py
+spring.datasource.url=jdbc:postgresql://localhost:5432/tuxdatabase
+spring.datasource.username=your_db_username
+spring.datasource.password=your_db_password
+spring.jpa.hibernate.ddl-auto=update
+```
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🚀 Contributing
+Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or bug fixes.
+
+## 🏆 Contact
+For any inquiries or questions, please contact simone.giarnera@gmail.com
