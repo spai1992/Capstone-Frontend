@@ -7,11 +7,6 @@ import { LandingPageRoutingModule } from './landing-page-routing.module'; // Imp
 
 @NgModule({
   declarations: [LandingPageComponent],
-  imports: [
-    CommonModule,
-    LandingPageRoutingModule, // Aggiungi questa riga
-    AuthModule,
-    SharedModule, // Aggiungi questa riga
-  ],
+  imports: [CommonModule, LandingPageRoutingModule, AuthModule, SharedModule],
 })
 export class LandingPageModule {}

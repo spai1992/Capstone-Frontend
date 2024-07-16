@@ -1,9 +1,9 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Aumenta lo spazio tra gli elementi */
-  max-width: 800px; /* Dimensione massima della pagina per mantenere le proporzioni */
-  margin: 0 auto; /* Centra il contenuto orizzontalmente */
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .title-container {
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   padding-left: 10px;
-  margin-bottom: 20px; /* Aggiunge uno spazio sotto il titolo */
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -32,7 +32,7 @@
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  left: -30px; /* Sposta il pallino a sinistra del testo */
+  left: -30px;
   background-color: #27376f;
 }
 
@@ -51,7 +51,7 @@
 .accordion-item {
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
-  margin-bottom: 20px; /* Aggiunge uno spazio sotto ogni accordion */
+  margin-bottom: 20px;
 }
 
 .accordion-header .accordion-button {

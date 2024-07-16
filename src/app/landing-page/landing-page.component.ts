@@ -1,5 +1,3 @@
-// src/app/landing-page/landing-page.component.ts
-
 import { Component, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 

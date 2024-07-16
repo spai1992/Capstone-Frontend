@@ -4,7 +4,7 @@
 }
 
 .profile-pic-wrapper {
-  height: 300px; /* Altezza fissa per abbinare alla card dei dettagli */
+  height: 300px;
   border-radius: 15px;
   border: 1px solid #27376f;
   overflow: hidden;
@@ -31,11 +31,11 @@
   border: 1px solid #27376f;
   border-radius: 15px;
   overflow: hidden;
-  height: 300px; /* Altezza fissa per abbinare l'immagine */
+  height: 300px;
 }
 
 .user-details {
-  margin-top: 20px; /* Margine per separare dal titolo */
+  margin-top: 20px;
 }
 
 h2 {
@@ -51,17 +51,17 @@ h2 {
 .user-actions {
   display: flex;
   justify-content: flex-start;
-  margin-top: 20px; /* Margine superiore per separare i pulsanti */
+  margin-top: 20px;
 }
 
 .btn-primary {
   background-color: #27376f;
   border: none;
   border-radius: 10px;
-  padding: 5px 10px; /* Padding ridotto per pulsanti più piccoli */
-  font-size: 14px; /* Dimensione font ridotta */
+  padding: 5px 10px;
+  font-size: 14px;
   transition: background-color 0.3s ease;
-  margin-right: 10px; /* Spazio tra i pulsanti */
+  margin-right: 10px;
 }
 
 .btn-primary:hover {
@@ -110,7 +110,6 @@ h2 {
   font-weight: bold;
 }
 
-/* Stile per la modale di modifica del profilo */
 .form {
   display: flex;
   flex-direction: column;

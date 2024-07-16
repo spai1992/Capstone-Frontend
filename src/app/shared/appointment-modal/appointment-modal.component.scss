@@ -1,7 +1,7 @@
 .container {
-  max-width: 500px; /* Riduce la larghezza massima */
-  margin: 0 auto; /* Centra il contenitore */
-  padding: 20px; /* Aggiunge padding per spazio bianco */
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .modal-header {
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px; /* Spazio sotto l'intestazione della modale */
+  padding-bottom: 10px;
 }
 
 .modal-title {

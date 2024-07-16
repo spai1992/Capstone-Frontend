@@ -50,6 +50,6 @@ export class NavbarComponent implements OnInit {
     } else {
       this.profileLink = '/profile';
     }
-    console.log('Profile link updated to:', this.profileLink); // Debugging statement
+    console.log('Profile link updated to:', this.profileLink);
   }
 }

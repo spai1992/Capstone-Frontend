@@ -33,7 +33,7 @@ export class ConfirmAppointmentComponent implements OnInit {
               'Il tuo appuntamento è stato confermato con successo!';
             setTimeout(() => {
               this.router.navigate(['/profile']);
-            }, 3000); // Attende 3 secondi prima di reindirizzare
+            }, 3000);
           },
           error: (error: HttpErrorResponse) => {
             console.error('Error from backend:', error);

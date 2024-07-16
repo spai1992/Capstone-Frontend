@@ -1,4 +1,3 @@
-// src/app/auth/register/register.component.ts
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../authservice.service';
 import { Router } from '@angular/router';
@@ -58,7 +57,6 @@ export class RegisterComponent {
         }
       );
     } else {
-      // Copia i campi dall'utente al lawyer
       this.lawyer.firstName = this.user.firstName;
       this.lawyer.lastName = this.user.lastName;
       this.lawyer.email = this.user.email;

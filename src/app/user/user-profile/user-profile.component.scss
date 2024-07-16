@@ -4,7 +4,7 @@
 }
 
 .profile-pic-wrapper {
-  height: 300px; /* Set a fixed height to match the details card */
+  height: 300px;
   border-radius: 15px;
   border: 1px solid #27376f;
   overflow: hidden;
@@ -31,11 +31,11 @@
   border: 1px solid #27376f;
   border-radius: 15px;
   overflow: hidden;
-  height: 300px; /* Fixed height to match the image */
+  height: 300px;
 }
 
 .user-details {
-  margin-top: 20px; /* Add margin to separate from the title */
+  margin-top: 20px;
 }
 
 h2 {
@@ -50,16 +50,16 @@ h2 {
 
 .user-actions {
   position: absolute;
-  bottom: 20px; /* Position closer to the bottom */
-  right: 20px; /* Position closer to the right */
+  bottom: 20px;
+  right: 20px;
 }
 
 .btn-primary {
   background-color: #27376f;
   border: none;
   border-radius: 10px;
-  padding: 5px 10px; /* Smaller padding for smaller buttons */
-  font-size: 14px; /* Smaller font size */
+  padding: 5px 10px;
+  font-size: 14px;
   transition: background-color 0.3s ease;
 }
 
@@ -85,13 +85,13 @@ h2 {
   border: 1px solid #27376f;
   border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Aggiungi transizione */
-  cursor: pointer; /* Aggiungi il puntatore per indicare che è cliccabile */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .appointment-card:hover {
-  transform: scale(1.05); /* Effetto di espansione */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiungi un'ombra per enfatizzare l'espansione */
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .appointment-card .card-body {
@@ -109,16 +109,15 @@ h2 {
   font-weight: bold;
 }
 
-/* Stile per la modale di modifica del profilo utente */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Aumenta lo spazio tra gli elementi */
+  gap: 20px;
   max-width: 400px;
   margin: 0 auto;
-  padding: 20px; /* Aggiungi padding per lo spazio interno */
-  border-radius: 15px; /* Arrotonda gli angoli della modale */
-  background-color: white; /* Sfondo bianco */
+  padding: 20px;
+  border-radius: 15px;
+  background-color: white;
 }
 
 .title {
@@ -130,7 +129,7 @@ h2 {
   display: flex;
   align-items: center;
   padding-left: 30px;
-  margin-bottom: 10px; /* Aggiunge uno spazio sotto il titolo */
+  margin-bottom: 10px;
 }
 
 .title::before,
@@ -173,7 +172,7 @@ h2 {
   outline: 0;
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
-  margin-bottom: 20px; /* Aggiunge uno spazio sotto ogni input */
+  margin-bottom: 20px;
 }
 
 .form label .input + span {

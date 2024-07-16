@@ -1,4 +1,3 @@
-<!-- src/app/lawyer/lawyers/lawyers.component.html -->
 <div class="container">
   <h2 class="text-center my-4 mt-5 mb-5">I Nostri Avvocati:</h2>
   <div class="row justify-content-center mb-5">
@@ -6,7 +5,7 @@
       <input
         type="text"
         class="form-control custom-placeholder"
-        placeholder="Cerca per prestazione"
+        placeholder="Cerca per prestazione:"
         [(ngModel)]="searchKeyword"
         (ngModelChange)="searchLawyers()"
       />
@@ -15,7 +14,7 @@
       <input
         type="text"
         class="form-control custom-placeholder"
-        placeholder="Città"
+        placeholder="Cerca per Città:"
         [(ngModel)]="searchCity"
         (ngModelChange)="searchLawyers()"
       />

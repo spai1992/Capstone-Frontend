@@ -8,13 +8,10 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandingPageModule } from './landing-page/landing-page.module';
-import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component'; // Importa il componente qui
+import { ConfirmAppointmentComponent } from './confirm-appointment/confirm-appointment.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ConfirmAppointmentComponent, // Dichiara il componente qui
-  ],
+  declarations: [AppComponent, ConfirmAppointmentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

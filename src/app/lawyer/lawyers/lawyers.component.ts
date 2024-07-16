@@ -44,12 +44,8 @@ export class LawyersComponent implements OnInit {
     });
     modalRef.componentInstance.lawyerId = lawyerId;
     modalRef.result.then(
-      () => {
-        // Closed with button click
-      },
-      () => {
-        // Dismissed
-      }
+      () => {},
+      () => {}
     );
   }
 }

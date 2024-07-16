@@ -6,5 +6,5 @@ export interface User {
   password: string;
   role: string;
   roles: string[];
-  profilePicture?: string; // Campo opzionale per l'immagine del profilo
+  profilePicture?: string;
 }

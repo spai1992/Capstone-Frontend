@@ -11,8 +11,8 @@ export interface Appointment {
     firstName: string;
     lastName: string;
   };
-  userFirstName?: string; // Campo già presente
-  userLastName?: string; // Campo già presente
-  lawyerFirstName?: string; // Nuovo campo
-  lawyerLastName?: string; // Nuovo campo
+  userFirstName?: string;
+  userLastName?: string;
+  lawyerFirstName?: string;
+  lawyerLastName?: string;
 }

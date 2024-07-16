@@ -39,7 +39,7 @@ export class AppointmentModalComponent {
   }
 
   bookAppointment(): void {
-    this.errorMessage = ''; // Clear previous error messages
+    this.errorMessage = '';
     const currentUser = this.authService.getUser();
     if (this.lawyer && currentUser && currentUser.id) {
       const appointmentRequest = {
@@ -52,7 +52,7 @@ export class AppointmentModalComponent {
       this.appointmentService.bookAppointment(appointmentRequest).subscribe({
         next: () => {
           console.log('Appointment booked successfully');
-          this.closeModal(); // Close the modal after successful booking
+          this.closeModal();
         },
         error: (err) => {
           console.error('Failed to book appointment', err);

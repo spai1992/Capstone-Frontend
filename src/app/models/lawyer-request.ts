@@ -10,5 +10,5 @@ export interface LawyerRequest {
   phone: string;
   profilePicture: string;
   roles: string[];
-  role: string; // Aggiungi questo campo
+  role: string;
 }

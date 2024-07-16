@@ -22,7 +22,6 @@ export class LoginComponent {
         this.authService.setToken(response.token);
         this.authService.setUser(response.user);
 
-        // Reindirizza alla pagina "lawyer-profile" se l'utente è un avvocato, altrimenti alla pagina "lawyers"
         if (this.authService.isLawyer()) {
           this.router.navigate(['/lawyer-profile']);
         } else {
