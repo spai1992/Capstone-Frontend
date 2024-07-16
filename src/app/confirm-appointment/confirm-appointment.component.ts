@@ -29,7 +29,8 @@ export class ConfirmAppointmentComponent implements OnInit {
         .subscribe({
           next: (response) => {
             console.log('Response from backend:', response);
-            this.message = 'Your appointment has been confirmed successfully!';
+            this.message =
+              'Il tuo appuntamento è stato confermato con successo!';
             setTimeout(() => {
               this.router.navigate(['/profile']);
             }, 3000); // Attende 3 secondi prima di reindirizzare
@@ -37,7 +38,7 @@ export class ConfirmAppointmentComponent implements OnInit {
           error: (error: HttpErrorResponse) => {
             console.error('Error from backend:', error);
             this.message =
-              'There was an error confirming your appointment. Please try again.';
+              'Abbiamo riscontrato un problema con la conferma del tuo appuntamento, perfavore prova nuovamente!';
           },
         });
     } else {
