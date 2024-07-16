@@ -68,3 +68,9 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 ## 🏆 Contact
 For any inquiries or questions, please contact simone.giarnera@gmail.com
+
+My LinkedIn profile: https://www.linkedin.com/in/simone-giarnera-a247ba1a4/
+
+My Web-Design Porfolio: https://github.com/spai1992/Capstone-Frontend/blob/main/WDFolio_Simone_Giarnera.pdf
+
+
